@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vihaya Documentation Website
+
+A modern, responsive Next.js documentation website for Vihaya - The ultimate engineering notes app, AI study assistant, and project/event management platform.
+
+## Features
+
+- 📚 Comprehensive documentation covering all Vihaya features
+- 🎨 Modern, clean design with dark mode support
+- 📱 Fully responsive - works on mobile, tablet, and desktop
+- 🔍 Easy navigation with collapsible sidebar
+- ⚡ Fast and optimized with Next.js 14 App Router
+- 🌙 Dark mode support
+- 📄 Multiple documentation sections:
+  - Getting Started
+  - Features (Notes, AI Assistant, Projects, Events, Productivity Tools)
+  - User Guides (Student, Organizer, Admin)
+  - API Reference
+  - Security & Privacy
+  - FAQ
 
 ## Getting Started
 
-First, run the development server:
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build the production version:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+vihaya-docs/
+├── app/
+│   ├── docs/              # Documentation pages
+│   │   ├── features/      # Feature documentation
+│   │   ├── guides/        # User guides
+│   │   └── api/          # API reference
+│   ├── layout.tsx        # Root layout
+│   ├── page.tsx          # Homepage
+│   └── globals.css       # Global styles
+├── components/
+│   └── Sidebar.tsx       # Navigation sidebar component
+└── public/               # Static assets
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **React** - UI library
+
+## Customization
+
+### Adding New Pages
+
+1. Create a new page in the appropriate directory under `app/docs/`
+2. Add the page to the navigation in `components/Sidebar.tsx`
+
+### Styling
+
+Styles are configured in:
+- `app/globals.css` - Global styles and CSS variables
+- Tailwind configuration is inline with `@import "tailwindcss"`
+
+### Content
+
+All documentation content is in the `app/docs/` directory. Each page is a React component that you can edit directly.
+
+## Deployment
+
+This website can be deployed on:
+
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **Any static hosting service** (after building with `npm run build`)
+
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Vishnu252005/Vihaya-App)
+
+## License
+
+This documentation website is part of the Vihaya project.
+
+## Support
+
+For issues or questions about this documentation website, please contact the Vihaya team.
