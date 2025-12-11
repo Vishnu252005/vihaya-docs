@@ -101,7 +101,7 @@ This website can be deployed on:
 
 ### Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Vishnu252005/Vihaya-App)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Vishnu252005/vihaya-docs)
 
 ## License
 

@@ -325,56 +325,194 @@ export default function InEventPage() {
         <div id="report-download">
           <h2 className="text-2xl font-semibold mb-4">Report Download</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Export comprehensive event data for offline use, accounting, or analysis.
+            Export comprehensive event data for offline use, accounting, or analysis. Choose between PDF or Excel (CSV) formats based on your needs.
           </p>
 
           <div className="space-y-4 mt-4">
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Download Options</h3>
+              <h3 className="font-semibold mb-2">How to Download Reports</h3>
+              <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside ml-4">
+                <li>Navigate to the event management detail page</li>
+                <li>Click the "Download Report" button in the quick actions section</li>
+                <li>Choose your preferred format:
+                  <ul className="list-disc list-inside ml-6 mt-1">
+                    <li><strong>PDF:</strong> For formatted documents, printing, or sharing</li>
+                    <li><strong>Excel (CSV):</strong> For data analysis in spreadsheet applications</li>
+                  </ul>
+                </li>
+                <li>The report will be generated and downloaded automatically</li>
+              </ol>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">PDF Report Format</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Generate reports in multiple formats:
+                The PDF report is a professionally formatted document that includes:
               </p>
               <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
-                <li><strong>PDF Report:</strong> Formatted document suitable for printing or sharing</li>
-                <li><strong>Excel/CSV:</strong> Spreadsheet format for data analysis</li>
-                <li><strong>Comprehensive Data:</strong> Includes all registration details, payment information, and timestamps</li>
+                <li><strong>Executive Summary:</strong> Total registrations, revenue, unique colleges, and departments</li>
+                <li><strong>Event Details:</strong> Complete event information including status, type, date, location, price, and creator</li>
+                <li><strong>Sub-Event Overview:</strong> Table showing all sub-events with their status, registrations, and prices</li>
+                <li><strong>Registration Details Table:</strong> Comprehensive list of all registrations with:
+                  <ul className="list-disc list-inside ml-6 mt-1">
+                    <li>Name, Email, Phone, College, Department, Year</li>
+                    <li>Registration ID, Payment Amount, Payment Status</li>
+                    <li>Registered Date, Team Name (if applicable)</li>
+                    <li>Accommodation and Food Coupon status</li>
+                  </ul>
+                </li>
+                <li><strong>Financial Summary:</strong> Total revenue breakdown and payment statistics</li>
+                <li><strong>Page Headers/Footers:</strong> Event title and page numbers</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Excel/CSV Report Format</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                The CSV (Comma-Separated Values) file is perfect for data analysis and includes:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Header Row:</strong> Column names for easy identification</li>
+                <li><strong>Registration Data:</strong> Each row contains one registration with the following columns:
+                  <ul className="list-disc list-inside ml-6 mt-1">
+                    <li>Name, Email, Phone, College, Department, Year</li>
+                    <li>Registration ID, Payment Amount, Payment Status</li>
+                    <li>Registered At (formatted date/time), Team Name</li>
+                    <li>Accommodation (Yes/No), Food Coupon (Yes/No)</li>
+                  </ul>
+                </li>
+                <li><strong>File Naming:</strong> Automatically named as <code className="text-xs bg-muted px-1 py-0.5 rounded">EventTitle_registrations_YYYYMMDD.csv</code></li>
+                <li><strong>Compatibility:</strong> Opens in Excel, Google Sheets, and any spreadsheet application</li>
               </ul>
             </div>
 
             <div className="p-5 rounded-lg border bg-card">
               <h3 className="font-semibold mb-2">Report Contents</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Reports include:
+                Both formats include comprehensive data:
               </p>
               <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
-                <li>Event summary and details</li>
-                <li>Complete registration list with all fields</li>
-                <li>Payment information and transaction IDs</li>
+                <li>Event summary and complete details</li>
+                <li>All registration information with full attendee details</li>
+                <li>Payment information including transaction IDs and payment status</li>
                 <li>Verification status for tickets and food coupons</li>
                 <li>Financial summary and statistics</li>
                 <li>Sub-event breakdown (if applicable)</li>
+                <li>Team information for team events</li>
+                <li>Accommodation and food coupon details</li>
               </ul>
             </div>
+
+            <div className="p-5 rounded-lg border bg-blue-500/10 border-blue-500/20">
+              <h3 className="font-semibold mb-2 text-blue-700 dark:text-blue-400">💡 Tips</h3>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>Use PDF format for official reports, printing, or sharing with stakeholders</li>
+                <li>Use CSV format for data analysis, filtering, sorting, or importing into other systems</li>
+                <li>Download reports periodically during the event as backups</li>
+                <li>CSV files can be easily imported into accounting software or databases</li>
+                <li>PDF reports maintain formatting and are ideal for presentations</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Screenshot placeholder */}
+          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
+            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
+            <p className="text-xs text-muted-foreground">Add screenshot of download report dialog and sample reports here</p>
           </div>
         </div>
 
         <div id="authorized-emails">
-          <h2 className="text-2xl font-semibold mb-4">Authorized Emails Management</h2>
+          <h2 className="text-2xl font-semibold mb-4">Authorized Emails Management (Volunteers)</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Control who can access and manage your event by authorizing specific email addresses.
+            Control who can access and manage your event by authorizing specific email addresses. This feature allows you to delegate event management responsibilities to team members, volunteers, or co-organizers.
           </p>
 
-          <div className="p-5 rounded-lg border bg-card mt-4">
-            <h3 className="font-semibold mb-2">Access Control</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              Authorize emails to grant event management access:
+          <div className="space-y-4 mt-4">
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">What Are Authorized Emails?</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Authorized emails are email addresses that have full access to manage an event. These users can:
               </p>
-            <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
-              <li>Add email addresses that can view and manage the event</li>
-              <li>Authorized users can access registration data, analytics, and verification features</li>
-              <li>Useful for delegating event management to team members</li>
-              <li>Works at both event level and sub-event level</li>
-            </ul>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>View all event details and settings</li>
+                <li>Access registration data and analytics</li>
+                <li>Use QR code scanning for check-in and verification</li>
+                <li>Download event reports</li>
+                <li>View financial overview and statistics</li>
+                <li>Manage registrations (view, search, delete)</li>
+                <li>Access sub-event management (if applicable)</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">How to Add Authorized Emails</h3>
+              <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside ml-4">
+                <li>Navigate to the event management detail page</li>
+                <li>Scroll to the "Authorized Emails" section</li>
+                <li>Click the "+" (Add) button next to "Authorized Emails" heading</li>
+                <li>Enter the email address in the dialog box</li>
+                <li>Click "Add" to authorize the email</li>
+                <li>The email will be added to the authorized list immediately</li>
+              </ol>
+              <div className="mt-3 p-3 rounded bg-muted">
+                <p className="text-xs text-muted-foreground">
+                  <strong>Note:</strong> The email address must be valid and the user must have a Vihaya account with that email to access the event.
+                </p>
+              </div>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">How to Remove Authorized Emails</h3>
+              <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside ml-4">
+                <li>Navigate to the event management detail page</li>
+                <li>Scroll to the "Authorized Emails" section</li>
+                <li>Find the email you want to remove from the list</li>
+                <li>Click the delete icon (trash) next to the email</li>
+                <li>Confirm the removal in the confirmation dialog</li>
+                <li>The email will be removed and lose access immediately</li>
+              </ol>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Event Creator vs Authorized Emails</h3>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Event Creator:</strong> The person who created the event has permanent access and cannot be removed</li>
+                <li><strong>Authorized Emails:</strong> Additional emails that can be added or removed by the event creator</li>
+                <li>The creator's email is displayed separately and marked as read-only</li>
+                <li>You cannot add the creator's email to the authorized list (it's already authorized by default)</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Sub-Event Authorization</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                For events with sub-events, you can authorize emails at two levels:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Event Level:</strong> Authorized emails can manage the entire event and all sub-events</li>
+                <li><strong>Sub-Event Level:</strong> You can authorize specific emails to manage only individual sub-events</li>
+                <li>This allows for granular access control and distributed event management</li>
+                <li>Sub-event authorized emails can only access their assigned sub-event, not the parent event</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-blue-500/10 border-blue-500/20">
+              <h3 className="font-semibold mb-2 text-blue-700 dark:text-blue-400">💡 Best Practices</h3>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>Only authorize emails of trusted team members or volunteers</li>
+                <li>Use sub-event authorization for large events with multiple teams</li>
+                <li>Remove authorization immediately when someone is no longer part of the team</li>
+                <li>Keep the authorized list small to maintain security</li>
+                <li>Communicate with authorized users about their access and responsibilities</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Screenshot placeholder */}
+          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
+            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
+            <p className="text-xs text-muted-foreground">Add screenshot of authorized emails section and add/remove dialogs here</p>
           </div>
         </div>
 

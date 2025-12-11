@@ -226,6 +226,43 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
+        <div id="delete-registration">
+          <h2 className="text-2xl font-semibold mb-4">Deleting Registrations</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Remove registrations when needed. This action permanently deletes the registration and cannot be undone.
+          </p>
+          <div className="space-y-4 mt-4">
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">How to Delete a Registration</h3>
+              <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside ml-4">
+                <li>Navigate to the event management detail page</li>
+                <li>Find the registration you want to delete in the registrations list</li>
+                <li>Click on the registration to view its details</li>
+                <li>Click the delete button (trash icon) on the registration card</li>
+                <li>Confirm the deletion in the confirmation dialog</li>
+              </ol>
+            </div>
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">What Gets Deleted</h3>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>The registration document from the event's registrations collection</li>
+                <li>All associated data including payment information, food coupons, and team member details</li>
+                <li>The registration count is automatically updated</li>
+                <li>Financial analytics are recalculated to reflect the removal</li>
+              </ul>
+            </div>
+            <div className="p-5 rounded-lg border bg-yellow-500/10 border-yellow-500/20">
+              <h3 className="font-semibold mb-2 text-yellow-700 dark:text-yellow-400">⚠️ Important Notes</h3>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>Deletion is permanent and cannot be undone</li>
+                <li>If the registration was paid, the payment record remains in the payment system (Razorpay)</li>
+                <li>For team events, deleting a team leader's registration may affect team member registrations</li>
+                <li>Consider exporting data before deleting if you need a backup</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <div id="registration-statistics">
           <h2 className="text-2xl font-semibold mb-4">Registration Statistics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

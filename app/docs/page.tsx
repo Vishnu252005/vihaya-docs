@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Calendar, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { generateMetadata as genMeta } from "@/lib/metadata";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = genMeta({
+  title: "Introduction to Vihaya",
+  description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance. Learn about Vihaya's core features and get started today.",
+  path: "/docs",
+  keywords: ["Vihaya", "Introduction", "Getting Started", "Event Management", "Engineering Notes", "AI Assistant"],
+});
 
 export default function DocsHome() {
   return (

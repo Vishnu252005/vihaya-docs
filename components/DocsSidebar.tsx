@@ -3,14 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Sparkles, Code2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+
+type NavigationChild = 
+  | { name: string; href: string }
+  | { name: string; children: Array<{ name: string; href: string }> };
 
 type NavigationItem = 
   | {
       name: string;
-      children: Array<{ name: string; href: string }>;
+      children: NavigationChild[];
     }
   | {
       name: string;
@@ -29,16 +33,36 @@ const navigation: NavigationItem[] = [
   {
     name: "Event Management",
     children: [
+      // Getting Started
       { name: "Event Overview", href: "/docs/event-overview" },
+      { name: "Organizer Profile", href: "/docs/event-management/organizer-profile" },
       { name: "Creating Events", href: "/docs/event-management/creating-events" },
-      { name: "Payment & Pricing", href: "/docs/event-management/event-settings" },
+      
+      // Configuration
+      {
+        name: "Event Configuration",
+        children: [
+          { name: "Edit Event Settings", href: "/docs/event-management/event-settings" },
+          { name: "Payment & Pricing", href: "/docs/event-management/payment-pricing" },
+          { name: "Registration Form Fields", href: "/docs/event-management/form-builder" },
+        ],
+      },
+      
+      // Advanced Setup
+      { name: "Child Events", href: "/docs/event-management/child-events" },
+      
+      // Management
       { name: "Registration Management", href: "/docs/event-management/guests-management" },
-      { name: "Registration Form Fields", href: "/docs/event-management/form-builder" },
+      
+      // During Event
       { name: "QR Scanning and Check-In", href: "/docs/event-management/qr-scanning" },
       { name: "In-Event Features", href: "/docs/event-management/in-event" },
+      
+      // Analytics & Reports
       { name: "Event Analytics", href: "/docs/event-management/event-analytics" },
+      
+      // After Event
       { name: "Post Event Management", href: "/docs/event-management/post-event" },
-      { name: "Child Events", href: "/docs/event-management/child-events" },
     ],
   },
   {
@@ -67,7 +91,11 @@ const navigation: NavigationItem[] = [
   },
 ];
 
-function hasChildren(item: NavigationItem): item is { name: string; children: Array<{ name: string; href: string }> } {
+function hasChildren(item: NavigationItem): item is { name: string; children: NavigationChild[] } {
+  return 'children' in item;
+}
+
+function hasNestedChildren(item: NavigationChild): item is { name: string; children: Array<{ name: string; href: string }> } {
   return 'children' in item;
 }
 
@@ -76,8 +104,21 @@ export default function DocsSidebar() {
   const [openSections, setOpenSections] = useState<string[]>(() => {
     const sections: string[] = [];
     navigation.forEach((section) => {
-      if (hasChildren(section) && section.children.some((child) => child.href === pathname)) {
-        sections.push(section.name);
+      if (hasChildren(section)) {
+        // Check if any child matches or if any nested child matches
+        const hasMatch = section.children.some((child) => {
+          if (hasNestedChildren(child)) {
+            const nestedMatch = child.children.some((nestedChild) => nestedChild.href === pathname);
+            if (nestedMatch) {
+              sections.push(`${section.name}-${child.name}`);
+            }
+            return nestedMatch;
+          }
+          return child.href === pathname;
+        });
+        if (hasMatch) {
+          sections.push(section.name);
+        }
       }
     });
     return sections.length > 0 ? sections : ["Get Started"];
@@ -94,15 +135,29 @@ export default function DocsSidebar() {
   return (
     <aside className="fixed left-0 top-16 w-64 h-[calc(100vh-4rem)] border-r bg-background/95 backdrop-blur-sm z-40">
       <ScrollArea className="h-full">
-        <div className="p-4">
-          {/* Guides Heading */}
-          <div className="px-3 py-2 mb-2">
+        <div className="p-5">
+          {/* Guides Heading with Icons */}
+          <div className="px-3 py-3 mb-6 space-y-3">
             <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
               Guides
             </h2>
+            <div className="space-y-1">
+              <Link
+                href="/docs"
+                className={cn(
+                  "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors",
+                  pathname === "/docs"
+                    ? "text-primary font-medium bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                )}
+              >
+                <FileText className="h-4 w-4" />
+                Documentation
+              </Link>
+            </div>
           </div>
           
-          <nav className="space-y-0.5">
+          <nav className="space-y-1">
             {navigation.map((section) => (
               <div key={section.name}>
                 {hasChildren(section) ? (
@@ -110,11 +165,17 @@ export default function DocsSidebar() {
                     <button
                       onClick={() => toggleSection(section.name)}
                       className={cn(
-                        "w-full text-left px-3 py-2 text-sm font-medium text-foreground/90 hover:text-foreground transition-colors flex items-center justify-between rounded-md hover:bg-muted/50 group",
+                        "w-full text-left px-3 py-2.5 text-sm font-medium text-foreground/90 hover:text-foreground transition-colors flex items-center justify-between rounded-md hover:bg-muted/50 group mb-1",
                         openSections.includes(section.name) && "text-foreground"
                       )}
                     >
-                      <span>{section.name}</span>
+                      <div className="flex items-center gap-2.5">
+                        {section.name === "Get Started" && <Sparkles className="h-4 w-4 text-primary" />}
+                        {section.name === "Event Management" && <Calendar className="h-4 w-4 text-primary" />}
+                        {section.name === "Engineering Notes" && <BookOpen className="h-4 w-4 text-primary" />}
+                        {section.name === "AI Assistant" && <Sparkles className="h-4 w-4 text-primary" />}
+                        <span>{section.name}</span>
+                      </div>
                       <ChevronRight
                         className={cn(
                           "h-3.5 w-3.5 transition-transform text-muted-foreground group-hover:text-foreground flex-shrink-0",
@@ -123,21 +184,109 @@ export default function DocsSidebar() {
                       />
                     </button>
                     {openSections.includes(section.name) && (
-                      <div className="ml-1 mt-0.5 space-y-0.5 pl-2 border-l border-border/50">
-                        {section.children.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className={cn(
-                              "block px-3 py-1.5 text-sm rounded-md transition-colors relative",
-                              pathname === item.href
-                                ? "text-primary font-medium bg-primary/10"
-                                : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                            )}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
+                      <div className="ml-1 mt-1 mb-2 space-y-1 pl-3 border-l border-border/50">
+                        {section.children.map((item) => {
+                          // Check if this item has nested children
+                          if (hasNestedChildren(item)) {
+                            const nestedItem = item;
+                            const isNestedOpen = nestedItem.children.some((child) => child.href === pathname);
+                            const nestedSectionKey = `${section.name}-${nestedItem.name}`;
+                            return (
+                              <div key={nestedItem.name}>
+                                <button
+                                  onClick={() => {
+                                    // Toggle nested section
+                                    setOpenSections((prev) =>
+                                      prev.includes(nestedSectionKey)
+                                        ? prev.filter((s) => s !== nestedSectionKey)
+                                        : [...prev, nestedSectionKey]
+                                    );
+                                  }}
+                                  className={cn(
+                                    "w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center justify-between mb-1",
+                                    isNestedOpen
+                                      ? "text-primary font-medium bg-primary/10"
+                                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                  )}
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    {nestedItem.name.includes("Configuration") && <Settings className="h-3.5 w-3.5" />}
+                                    <span>{nestedItem.name}</span>
+                                  </div>
+                                  <ChevronRight
+                                    className={cn(
+                                      "h-3 w-3 transition-transform text-muted-foreground flex-shrink-0",
+                                      openSections.includes(nestedSectionKey) && "rotate-90"
+                                    )}
+                                  />
+                                </button>
+                                {openSections.includes(nestedSectionKey) && (
+                                  <div className="ml-2 mt-1 mb-2 space-y-1 pl-3 border-l border-border/30">
+                                    {nestedItem.children.map((nestedChild) => {
+                                      const getNestedIcon = (name: string) => {
+                                        if (name.includes("Edit") || name.includes("Settings")) return <Settings className="h-3 w-3" />;
+                                        if (name.includes("Payment") || name.includes("Pricing")) return <Settings className="h-3 w-3" />;
+                                        if (name.includes("Form") || name.includes("Fields")) return <FileText className="h-3 w-3" />;
+                                        return null;
+                                      };
+                                      
+                                      return (
+                                        <Link
+                                          key={nestedChild.href}
+                                          href={nestedChild.href}
+                                          className={cn(
+                                            "flex items-center gap-2.5 px-3 py-2 text-xs rounded-md transition-colors relative",
+                                            pathname === nestedChild.href
+                                              ? "text-primary font-medium bg-primary/10"
+                                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                                          )}
+                                        >
+                                          {getNestedIcon(nestedChild.name)}
+                                          <span>{nestedChild.name}</span>
+                                        </Link>
+                                      );
+                                    })}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          }
+                          // Regular child item
+                          const getIcon = (name: string) => {
+                            if (name.includes("Overview") || name.includes("Introduction")) return <FileText className="h-3.5 w-3.5" />;
+                            if (name.includes("Installation") || name.includes("Quick Start")) return <Settings className="h-3.5 w-3.5" />;
+                            if (name.includes("Organizer Profile")) return <Users className="h-3.5 w-3.5" />;
+                            if (name.includes("Creating Events")) return <Calendar className="h-3.5 w-3.5" />;
+                            if (name.includes("Registration")) return <Users className="h-3.5 w-3.5" />;
+                            if (name.includes("QR") || name.includes("Scan")) return <QrCode className="h-3.5 w-3.5" />;
+                            if (name.includes("Analytics")) return <BarChart3 className="h-3.5 w-3.5" />;
+                            if (name.includes("Post Event") || name.includes("Archive")) return <Archive className="h-3.5 w-3.5" />;
+                            if (name.includes("Child Events") || name.includes("Sub")) return <Layers className="h-3.5 w-3.5" />;
+                            if (name.includes("Payment") || name.includes("Pricing")) return <Settings className="h-3.5 w-3.5" />;
+                            if (name.includes("Form") || name.includes("Fields")) return <FileText className="h-3.5 w-3.5" />;
+                            if (name.includes("In-Event") || name.includes("During")) return <Calendar className="h-3.5 w-3.5" />;
+                            if (name.includes("Notes")) return <BookOpen className="h-3.5 w-3.5" />;
+                            if (name.includes("AI")) return <Sparkles className="h-3.5 w-3.5" />;
+                            if (name.includes("Code") || name.includes("Markdown")) return <Code2 className="h-3.5 w-3.5" />;
+                            return null;
+                          };
+                          
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className={cn(
+                                "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors relative",
+                                pathname === item.href
+                                  ? "text-primary font-medium bg-primary/10"
+                                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                              )}
+                            >
+                              {getIcon(item.name)}
+                              <span>{item.name}</span>
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </>

@@ -3,6 +3,19 @@ import { ArrowRight, Calendar, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/Logo";
+import ChatBot from "@/components/ChatBot";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Welcome to Vihaya",
+  description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance. Get started with Vihaya today!",
+  keywords: ["Vihaya", "Event Management", "Engineering Notes", "AI Assistant", "Study Assistant", "Tech Events"],
+  openGraph: {
+    title: "Welcome to Vihaya",
+    description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance.",
+    type: "website",
+  },
+};
 
 export default function Home() {
   return (
@@ -15,7 +28,7 @@ export default function Home() {
             <Link href="/docs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Documentation
             </Link>
-            <Link href="https://github.com/Vishnu252005/Vihaya-App" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="https://github.com/Vishnu252005/vihaya-docs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               GitHub
             </Link>
             <Button 
@@ -125,7 +138,7 @@ export default function Home() {
               <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Documentation
               </Link>
-              <Link href="https://github.com/Vishnu252005/Vihaya-App" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="https://github.com/Vishnu252005/vihaya-docs" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 GitHub
               </Link>
               <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -135,6 +148,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      <ChatBot />
     </div>
   );
 }

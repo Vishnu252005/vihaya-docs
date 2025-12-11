@@ -1,3 +1,13 @@
+import { generateMetadata as genMeta } from "@/lib/metadata";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = genMeta({
+  title: "Event Overview",
+  description: "A comprehensive guide to the event dashboard, including registration status, recent registrations, and organizer management. Learn how to access and use the Organizer Profile.",
+  path: "/docs/event-overview",
+  keywords: ["event overview", "organizer dashboard", "event management", "dashboard statistics", "event cards"],
+});
+
 export default function EventOverviewPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -93,6 +103,74 @@ export default function EventOverviewPage() {
               </div>
               <p className="text-sm text-muted-foreground">Total revenue generated from all paid event registrations across all your events.</p>
             </div>
+          </div>
+        </div>
+
+        <div id="managing-events">
+          <h2 className="text-2xl font-semibold mb-4">Managing Events from Organizer Profile</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            The organizer profile provides direct access to manage all your events. From the dashboard, you can quickly access event management features.
+          </p>
+          
+          <div className="space-y-4 mt-4">
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Accessing Event Management</h3>
+              <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside ml-4">
+                <li>Navigate to your profile and select "Organizer Profile"</li>
+                <li>View your event dashboard with all statistics</li>
+                <li>Scroll down to see all your events displayed as cards</li>
+                <li>Click on any event card to open the event management detail page</li>
+              </ol>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Event Card Actions</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Each event card in the organizer profile provides quick access to:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>View Event Details:</strong> Click the card to open full event management</li>
+                <li><strong>Edit Event:</strong> Modify event settings, pricing, and details</li>
+                <li><strong>Delete Event:</strong> Remove the event permanently (with confirmation)</li>
+                <li><strong>Quick Stats:</strong> See registration count and revenue at a glance</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Event Management Features</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                From the event management detail page, you can:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>View real-time registration data and analytics</li>
+                <li>Download comprehensive reports (PDF or CSV)</li>
+                <li>Scan QR codes for check-in and verification</li>
+                <li>Manage registrations (view, search, delete)</li>
+                <li>Add/remove authorized emails (volunteers)</li>
+                <li>View financial overview and statistics</li>
+                <li>Manage sub-events (if applicable)</li>
+                <li>Access all in-event features</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Authorized Event Access</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                If you're an authorized email (volunteer) for an event:
+              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>Events you're authorized for will appear in your event management page</li>
+                <li>You have full access to manage the event (same as the creator)</li>
+                <li>You can access all event management features</li>
+                <li>The event creator can remove your access at any time</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Screenshot placeholder */}
+          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
+            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
+            <p className="text-xs text-muted-foreground">Add screenshot of organizer profile with event cards here</p>
           </div>
         </div>
 

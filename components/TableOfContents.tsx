@@ -21,9 +21,21 @@ export default function TableOfContents() {
     setHeadings([]);
     setActiveId("");
 
-    // Wait for DOM to be ready
+    // Use requestAnimationFrame for better performance
+    let observer: IntersectionObserver | null = null;
+    let rafId: number | null = null;
+
     const updateHeadings = () => {
       const headingElements = document.querySelectorAll("h2");
+      
+      if (headingElements.length === 0) {
+        // Try again after a short delay if no headings found
+        rafId = requestAnimationFrame(() => {
+          setTimeout(updateHeadings, 50);
+        });
+        return;
+      }
+
       const headingList: Heading[] = Array.from(headingElements).map((heading) => {
         const text = heading.textContent || "";
         const id = heading.id || text.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || `heading-${Math.random().toString(36).substr(2, 9)}`;
@@ -44,12 +56,15 @@ export default function TableOfContents() {
 
       // Set up intersection observer for active section highlighting
       if (headingList.length > 0) {
-        const observer = new IntersectionObserver(
+        observer = new IntersectionObserver(
           (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveId(entry.target.id);
-              }
+            // Use requestAnimationFrame to batch updates
+            requestAnimationFrame(() => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  setActiveId(entry.target.id);
+                }
+              });
             });
           },
           {
@@ -58,65 +73,71 @@ export default function TableOfContents() {
           }
         );
 
-        headingElements.forEach((heading) => observer.observe(heading));
-
-        return () => {
-          headingElements.forEach((heading) => observer.unobserve(heading));
-        };
+        headingElements.forEach((heading) => observer!.observe(heading));
       }
     };
 
-    // Use setTimeout to ensure DOM is fully rendered
-    const timeoutId = setTimeout(updateHeadings, 100);
+    // Use requestAnimationFrame for better performance than setTimeout
+    rafId = requestAnimationFrame(() => {
+      updateHeadings();
+    });
 
     return () => {
-      clearTimeout(timeoutId);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, [pathname]);
 
   if (headings.length === 0) return null;
 
   return (
-    <aside className="fixed right-0 top-16 w-64 h-[calc(100vh-4rem)] border-l bg-background/95 backdrop-blur-sm z-30 hidden xl:block">
-      <ScrollArea className="h-full">
-        <div className="p-6">
-          <div className="mb-4">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              On this page
-            </h3>
-          </div>
-          <nav className="space-y-1">
-            {headings.map((heading) => (
-              <a
-                key={heading.id}
-                href={`#${heading.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const element = document.getElementById(heading.id);
-                  if (element) {
-                    const offset = 100;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth",
-                    });
-                    setActiveId(heading.id);
-                  }
-                }}
-                className={cn(
-                  "block text-sm py-1.5 transition-colors rounded-md px-2",
-                  activeId === heading.id
-                    ? "text-primary font-medium bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                )}
-              >
-                {heading.text}
-              </a>
-            ))}
-          </nav>
+    <aside className="fixed right-0 top-16 w-64 h-[calc(100vh-4rem)] z-30 hidden xl:block">
+      <div className="pt-12 pb-6 pl-12 pr-6 h-full">
+        <div className="mb-4">
+          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            On this page
+          </h3>
         </div>
-      </ScrollArea>
+        <nav className="mt-4">
+          {headings.map((heading, index) => (
+            <a
+              key={heading.id}
+              href={`#${heading.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById(heading.id);
+                if (element) {
+                  const offset = 100;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - offset;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                  });
+                  setActiveId(heading.id);
+                }
+              }}
+              className={cn(
+                "block text-sm transition-colors cursor-pointer",
+                activeId === heading.id
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+              style={{ 
+                lineHeight: '1.5',
+                paddingTop: index === 0 ? '0' : '0.5rem',
+                paddingBottom: '0.5rem'
+              }}
+            >
+              {heading.text}
+            </a>
+          ))}
+        </nav>
+      </div>
     </aside>
   );
 }

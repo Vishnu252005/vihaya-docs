@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function EventSettingsPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -6,406 +8,332 @@ export default function EventSettingsPage() {
       </div>
       
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">
-        Payment Settings & Configuration
+        Event Settings
       </h1>
       
       <p className="text-lg text-muted-foreground mb-8 font-normal leading-relaxed">
-        Learn how payment processing works in Vihaya using Razorpay. Configure pricing, understand the payment flow, and manage transactions for your events.
+        Configure and customize your event settings. Edit event details, manage appearance, set schedules, and control registration behavior.
       </p>
 
       <div className="space-y-8 leading-7">
         <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Payment Overview</h2>
+          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vihaya uses <strong>Razorpay</strong> as the payment gateway to process all event registration payments securely. 
-            Razorpay is a leading payment gateway in India that supports multiple payment methods including credit/debit cards, 
-            UPI, net banking, and digital wallets.
+            Event Settings allow you to modify your event after creation. You can update event information, change the banner, 
+            adjust dates, modify contact details, and configure various event features. All changes are saved immediately and reflected in real-time.
           </p>
           <div className="p-5 rounded-lg border bg-primary/5 mt-4">
             <p className="text-sm text-muted-foreground">
-              <strong>Note:</strong> All payments are processed in Indian Rupees (INR) and are handled securely through Razorpay's 
-              encrypted payment infrastructure. Vihaya does not store any payment card information.
+              <strong>Accessing Event Settings:</strong> Navigate to your event from the event management page and click "Edit" to open the event settings form.
             </p>
           </div>
         </div>
 
-        <div id="payment-flow">
-          <h2 className="text-2xl font-semibold mb-4">How Payment Works</h2>
+        <div id="edit-event-settings">
+          <h2 className="text-2xl font-semibold mb-4">Edit Event Settings</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Here's the complete payment flow when an attendee registers for a paid event:
+            The Edit Event Settings form allows you to modify all aspects of your event configuration. 
+            The form is organized into logical sections for easy navigation.
           </p>
-          
-          <div className="space-y-4 mt-6">
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  1
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">User Selects Event & Fills Registration Form</h3>
+
+          <div className="space-y-6 mt-4">
+            <div id="event-banner">
+              <h3 className="text-xl font-semibold mb-3">Event Banner</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                The event banner is the main visual representation of your event. It appears on the event details page and helps attract attendees.
+              </p>
+              <div className="p-5 rounded-lg border bg-card">
+                <h4 className="font-semibold mb-2">Uploading/Updating Banner</h4>
+                <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside ml-4">
+                  <li>Click on the banner card or upload area</li>
+                  <li>Select an image from your device gallery</li>
+                  <li>Image is uploaded to Firebase Storage</li>
+                  <li>Banner updates immediately after upload</li>
+                </ol>
+                <p className="text-sm text-muted-foreground mt-3">
+                  <strong>Note:</strong> You can clear the banner by clicking the clear button, which removes the current banner image.
+                </p>
+              </div>
+              <div className="my-4 p-6 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
+                <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
+                <p className="text-xs text-muted-foreground">Add screenshot of event banner upload section here</p>
+              </div>
+            </div>
+
+            <div id="event-overview">
+              <h3 className="text-xl font-semibold mb-3">Event Overview</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                Basic event information that identifies and describes your event.
+              </p>
+              <div className="space-y-4">
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Event Name</h4>
                   <p className="text-sm text-muted-foreground">
-                    The attendee fills out the registration form with their details (name, email, phone, etc.) and selects 
-                    any additional options like food coupons or accommodation.
+                    The title of your event. This is displayed prominently on the event page and in event listings. 
+                    Required field - cannot be empty.
+                  </p>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Event Description</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    A detailed description of your event. This helps attendees understand what the event is about, what they'll learn, and what to expect.
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                    <li>Supports multi-line text (4 lines by default)</li>
+                    <li>Required field - cannot be empty</li>
+                    <li>Displayed on the public event registration page</li>
+                    <li>Can be updated at any time</li>
+                  </ul>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Main Location</h4>
+                  <p className="text-sm text-muted-foreground">
+                    The primary venue or location for your event. This is displayed on the event page and helps attendees find the venue. 
+                    Required field - cannot be empty.
+                  </p>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Event Status</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Control the visibility and state of your event:
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                    <li><strong>Draft:</strong> Event is not visible to the public. Use this for events still in planning.</li>
+                    <li><strong>Published:</strong> Event is live and visible. Registration form is active and accepting registrations.</li>
+                    <li><strong>Archived:</strong> Event is completed. Moved out of active event lists but data remains accessible.</li>
+                  </ul>
+                  <p className="text-sm text-muted-foreground mt-3">
+                    <strong>Note:</strong> Changing status to "Published" makes the event registration form publicly accessible.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  2
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Price Calculation</h3>
-                  <p className="text-sm text-muted-foreground">
-                    The system calculates the total amount based on:
+            <div id="event-schedule">
+              <h3 className="text-xl font-semibold mb-3">Event Schedule</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                Define when your event occurs and when registrations are available.
+              </p>
+              <div className="space-y-4">
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Start Date & End Date</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Set the actual event dates:
                   </p>
-                  <ul className="text-sm text-muted-foreground list-disc list-inside mt-2 space-y-1">
-                    <li>Base event price or selected special pricing category</li>
-                    <li>Food coupon price (if selected)</li>
-                    <li>Accommodation price (if selected)</li>
-                    <li>Any applicable discount coupons</li>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                    <li><strong>Start Date:</strong> When your event begins</li>
+                    <li><strong>End Date:</strong> When your event concludes</li>
+                    <li>Both dates are required</li>
+                    <li>End date should be after start date</li>
+                  </ul>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Registration Countdown</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Enable a countdown timer that shows when registrations will open:
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                    <li>Toggle to enable/disable the countdown feature</li>
+                    <li>When enabled, set the date and time when registrations unlock</li>
+                    <li>Attendees see a live countdown until the specified time</li>
+                    <li>After the countdown ends, registrations become active</li>
+                    <li>Useful for creating anticipation and managing registration flow</li>
+                  </ul>
+                  <p className="text-sm text-muted-foreground mt-3">
+                    <strong>Example:</strong> Set registration to open 7 days before the event starts, creating an "early bird" registration period.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div id="contact-support">
+              <h3 className="text-xl font-semibold mb-3">Contact & Support</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                Provide contact information so attendees can reach the organizing team with questions or concerns.
+              </p>
+              <div className="space-y-4">
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Contact Phone</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Phone number for event inquiries. Displayed on the event page for attendees to contact organizers.
+                  </p>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">Contact Email</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Email address for event inquiries. Used for official communication and displayed on the event page.
+                  </p>
+                </div>
+                <div className="p-5 rounded-lg border bg-card">
+                  <h4 className="font-semibold mb-2">WhatsApp Group Link</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Optional WhatsApp group link for event communication:
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                    <li>Create a WhatsApp group for your event</li>
+                    <li>Copy the group invite link</li>
+                    <li>Paste the link in this field</li>
+                    <li>Link is displayed on the registration page</li>
+                    <li>Attendees can join the group for updates and discussions</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  3
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Razorpay Payment Gateway Opens</h3>
-                  <p className="text-sm text-muted-foreground">
-                    When the user clicks "Pay & Register", the Razorpay payment gateway opens with the calculated amount. 
-                    The payment form is pre-filled with the user's contact and email information.
-                  </p>
-                </div>
+            <div id="sub-event-settings">
+              <h3 className="text-xl font-semibold mb-3">Sub-Event Settings</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                For parent events, you can add, edit, and manage sub-events. Each sub-event has its own settings that can be configured independently.
+              </p>
+              <div className="p-5 rounded-lg border bg-card">
+                <h4 className="font-semibold mb-2">Managing Sub-Events</h4>
+                <p className="text-sm text-muted-foreground mb-2">
+                  From the event settings form:
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                  <li>Add new sub-events using the "Add Sub-Event" button</li>
+                  <li>Switch between sub-events using tabs</li>
+                  <li>Edit individual sub-event details</li>
+                  <li>Remove sub-events if no longer needed</li>
+                  <li>Each sub-event can have its own title, description, schedule, pricing, and features</li>
+                </ul>
+                <p className="text-sm text-muted-foreground mt-3">
+                  Learn more about sub-events in the <Link href="/docs/event-management/child-events" className="text-primary hover:underline">Child Events</Link> documentation.
+                </p>
               </div>
             </div>
 
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  4
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">User Completes Payment</h3>
-                  <p className="text-sm text-muted-foreground">
-                    The user can choose from multiple payment methods:
-                  </p>
-                  <ul className="text-sm text-muted-foreground list-disc list-inside mt-2 space-y-1">
-                    <li>Credit/Debit Cards (Visa, Mastercard, RuPay)</li>
-                    <li>UPI (Google Pay, PhonePe, Paytm, etc.)</li>
-                    <li>Net Banking</li>
-                    <li>Digital Wallets</li>
-                    <li>EMI options (if available)</li>
-                  </ul>
-                </div>
+            <div id="saving-changes">
+              <h3 className="text-xl font-semibold mb-3">Saving Changes</h3>
+              <p className="mb-3 text-muted-foreground leading-relaxed">
+                All changes are saved when you submit the form. The system validates all required fields before saving.
+              </p>
+              <div className="p-5 rounded-lg border bg-card">
+                <h4 className="font-semibold mb-2">Save Process</h4>
+                <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside ml-4">
+                  <li>Fill in or modify event settings</li>
+                  <li>Click "Save" or "Update Event" button</li>
+                  <li>System validates all required fields</li>
+                  <li>Changes are saved to the database</li>
+                  <li>Success message confirms the update</li>
+                  <li>Changes are immediately reflected in the event</li>
+                </ol>
+                <p className="text-sm text-muted-foreground mt-3">
+                  <strong>Validation:</strong> Required fields (Event Name, Description, Location) must be filled before saving. 
+                  Date validations ensure logical date ranges.
+                </p>
               </div>
             </div>
-
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  5
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Payment Verification</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Razorpay processes the payment and sends a payment ID back to Vihaya. The system verifies the payment 
-                    and creates the registration record with payment status marked as "completed".
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-5 rounded-lg border bg-card">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                  6
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Registration Confirmation</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Upon successful payment, the user receives a confirmation with their registration details, QR code 
-                    (if applicable), and transaction ID. The event organizer can see the registration in their dashboard.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of Razorpay payment gateway here</p>
           </div>
         </div>
 
-        <div id="pricing-configuration">
-          <h2 className="text-2xl font-semibold mb-4">Pricing Configuration</h2>
+        <div id="advanced-settings">
+          <h2 className="text-2xl font-semibold mb-4">Advanced Event Settings</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Configure how much attendees pay for your event:
+            Additional settings available when creating or editing sub-events (or single events). These settings control event behavior and features.
           </p>
 
           <div className="space-y-4 mt-4">
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Free Events</h3>
+              <h3 className="font-semibold mb-2">Team Event Settings</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                For free events, simply set the price to ₹0. Users can register without any payment processing.
+                Enable team registrations for events like hackathons or competitions:
               </p>
-              <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-                <li>No payment gateway involved</li>
-                <li>Instant registration confirmation</li>
-                <li>Perfect for workshops, talks, or community events</li>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Enable Team Event:</strong> Toggle to allow team registrations</li>
+                <li><strong>Min. Team Size:</strong> Minimum number of members required per team (default: 2)</li>
+                <li><strong>Max. Team Size:</strong> Maximum number of members allowed per team (default: 4)</li>
+                <li>When enabled, registration form shows team name and member fields</li>
+                <li>Each team member must provide their details</li>
               </ul>
             </div>
 
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Fixed Price Events</h3>
+              <h3 className="font-semibold mb-2">Pricing & Capacity</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Set a single price for all attendees. This is the simplest pricing model.
+                Configure event pricing and attendance limits:
               </p>
-              <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
-                <li>One price for everyone</li>
-                <li>Easy to manage</li>
-                <li>Best for standard events</li>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Free Event:</strong> Toggle to make the event free (no payment required)</li>
+                <li><strong>Price:</strong> Set fixed price for paid events</li>
+                <li><strong>Special Pricing:</strong> Enable multiple pricing tiers (e.g., IEEE Member, Student, Professional)</li>
+                <li><strong>Capacity:</strong> Maximum number of attendees (default: 50)</li>
+                <li><strong>Points:</strong> Points awarded for event participation</li>
               </ul>
             </div>
 
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Special Pricing Categories</h3>
+              <h3 className="font-semibold mb-2">Additional Features</h3>
               <p className="text-sm text-muted-foreground mb-2">
-                Create different pricing tiers for different attendee categories. Perfect for membership-based pricing.
+                Optional features that can be enabled per event:
               </p>
-              <div className="mt-3 p-4 rounded bg-muted/50">
-                <p className="text-sm font-medium mb-2">Example Categories:</p>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• <strong>IEEE Member:</strong> ₹0 (Free for members)</li>
-                  <li>• <strong>Non-IEEE Member:</strong> ₹299</li>
-                  <li>• <strong>Student:</strong> ₹199</li>
-                  <li>• <strong>Professional:</strong> ₹499</li>
-                </ul>
-              </div>
-              <p className="text-sm text-muted-foreground mt-3">
-                Users select their category during registration, and the appropriate price is applied automatically.
-              </p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li><strong>Accommodation:</strong> Offer accommodation with pricing and details</li>
+                <li><strong>Food Coupons:</strong> Enable food coupon purchases with pricing</li>
+                <li><strong>Referral System:</strong> Allow attendees to use referral codes</li>
+                <li><strong>WhatsApp Group:</strong> Display WhatsApp group link on registration page</li>
+                <li><strong>Registration Countdown:</strong> Show countdown timer for registration launch</li>
+              </ul>
             </div>
-          </div>
-
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of pricing configuration in event creation form here</p>
           </div>
         </div>
 
-        <div id="additional-charges">
-          <h2 className="text-2xl font-semibold mb-4">Additional Charges</h2>
+        <div id="editing-limitations">
+          <h2 className="text-2xl font-semibold mb-4">Editing Limitations & Considerations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            You can add optional charges on top of the base event price:
+            Important considerations when editing events:
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2 mt-4">
+          <div className="space-y-4 mt-4">
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Food Coupons</h3>
-              <p className="text-sm text-muted-foreground">
-                If your event includes meals, you can enable food coupons with a separate price. This amount is added 
-                to the base event price during checkout.
+              <h3 className="font-semibold mb-2">Published Events</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                When editing published events:
               </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                <strong>Example:</strong> Event (₹299) + Food Coupon (₹100) = Total (₹399)
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside ml-4">
+                <li>Changes are immediately visible to attendees</li>
+                <li>Updating dates may affect existing registrations</li>
+                <li>Changing pricing doesn't affect already registered attendees</li>
+                <li>Modifying capacity may impact registration availability</li>
+              </ul>
+            </div>
+
+            <div className="p-5 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Event ID</h3>
+              <p className="text-sm text-muted-foreground">
+                The event ID is generated from the event name and cannot be changed after creation. 
+                This ensures stable URLs and prevents broken links. If you need a different ID, create a new event.
               </p>
             </div>
 
             <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Accommodation</h3>
+              <h3 className="font-semibold mb-2">Existing Registrations</h3>
               <p className="text-sm text-muted-foreground">
-                For multi-day events, offer accommodation options with separate pricing. Attendees can opt-in during registration.
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                <strong>Example:</strong> Event (₹499) + Accommodation (₹500) = Total (₹999)
+                Be cautious when modifying settings that affect existing registrations. 
+                For example, changing team size limits won't affect already registered teams, but may prevent new team registrations.
               </p>
             </div>
           </div>
         </div>
 
-        <div id="discount-coupons">
-          <h2 className="text-2xl font-semibold mb-4">Discount Coupons</h2>
+        <div id="best-practices">
+          <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Attendees can apply discount coupons during registration to get a discount on the event price. The discount 
-            amount is automatically deducted from the total before payment processing.
+            Tips for effectively managing event settings:
           </p>
-          <div className="p-5 rounded-lg border bg-card mt-4">
-            <p className="text-sm text-muted-foreground">
-              <strong>Note:</strong> Coupon validation happens before payment. If a coupon is invalid or expired, 
-              the user will be notified before proceeding to payment.
-            </p>
-          </div>
-        </div>
 
-        <div id="payment-security">
-          <h2 className="text-2xl font-semibold mb-4">Payment Security</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vihaya ensures secure payment processing through Razorpay:
-          </p>
-          <div className="grid gap-4 md:grid-cols-2 mt-4">
-            <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">PCI DSS Compliant</h3>
-              <p className="text-sm text-muted-foreground">
-                Razorpay is PCI DSS Level 1 certified, ensuring the highest level of security for payment processing.
-              </p>
-            </div>
-            <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Encrypted Transactions</h3>
-              <p className="text-sm text-muted-foreground">
-                All payment data is encrypted using industry-standard SSL/TLS encryption during transmission.
-              </p>
-            </div>
-            <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">No Card Storage</h3>
-              <p className="text-sm text-muted-foreground">
-                Vihaya never stores payment card information. All sensitive data is handled directly by Razorpay.
-              </p>
-            </div>
-            <div className="p-5 rounded-lg border bg-card">
-              <h3 className="font-semibold mb-2">Payment Verification</h3>
-              <p className="text-sm text-muted-foreground">
-                Each payment is verified using Razorpay's payment ID and signature to ensure authenticity.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div id="payment-methods">
-          <h2 className="text-2xl font-semibold mb-4">Supported Payment Methods</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Razorpay supports a wide range of payment methods that your attendees can use:
-          </p>
-          <div className="grid gap-3 md:grid-cols-3 mt-4">
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">💳</div>
-              <h3 className="font-semibold text-sm">Credit/Debit Cards</h3>
-              <p className="text-xs text-muted-foreground mt-1">Visa, Mastercard, RuPay</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">📱</div>
-              <h3 className="font-semibold text-sm">UPI</h3>
-              <p className="text-xs text-muted-foreground mt-1">Google Pay, PhonePe, Paytm</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">🏦</div>
-              <h3 className="font-semibold text-sm">Net Banking</h3>
-              <p className="text-xs text-muted-foreground mt-1">All major banks</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">💼</div>
-              <h3 className="font-semibold text-sm">Digital Wallets</h3>
-              <p className="text-xs text-muted-foreground mt-1">Paytm, Freecharge, Mobikwik</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">📊</div>
-              <h3 className="font-semibold text-sm">EMI</h3>
-              <p className="text-xs text-muted-foreground mt-1">Available for eligible cards</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card text-center">
-              <div className="text-2xl mb-2">🔐</div>
-              <h3 className="font-semibold text-sm">Razorpay Wallet</h3>
-              <p className="text-xs text-muted-foreground mt-1">Razorpay's own wallet</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="transaction-details">
-          <h2 className="text-2xl font-semibold mb-4">Transaction Details</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            After a successful payment, the following information is stored with each registration:
-          </p>
-          <div className="p-5 rounded-lg border bg-card mt-4">
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Payment ID:</strong> Unique identifier from Razorpay for the transaction</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Payment Status:</strong> "completed" for successful payments, "free" for free events</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Amount Paid:</strong> Total amount including base price and any additional charges</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>Transaction Date:</strong> Date and time of the payment</span>
-              </li>
+          <div className="p-6 rounded-lg border bg-primary/5">
+            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+              <li className="leading-relaxed"><strong>Review Before Publishing:</strong> Double-check all settings before changing status to "Published"</li>
+              <li className="leading-relaxed"><strong>Test Registration:</strong> After making changes, test the registration process to ensure everything works</li>
+              <li className="leading-relaxed"><strong>Update Banner:</strong> Use high-quality, relevant images for your event banner</li>
+              <li className="leading-relaxed"><strong>Clear Descriptions:</strong> Write clear, detailed descriptions to help attendees understand your event</li>
+              <li className="leading-relaxed"><strong>Contact Information:</strong> Keep contact details up-to-date for attendee inquiries</li>
+              <li className="leading-relaxed"><strong>Schedule Carefully:</strong> Ensure event dates and registration countdown dates are logical</li>
+              <li className="leading-relaxed"><strong>Capacity Planning:</strong> Set appropriate capacity limits based on venue constraints</li>
+              <li className="leading-relaxed"><strong>Feature Selection:</strong> Enable only features you actually need to avoid confusion</li>
             </ul>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">
-            Organizers can view all transaction details in the event management dashboard and export this information for accounting purposes.
-          </p>
-        </div>
-
-        <div id="payment-failures">
-          <h2 className="text-2xl font-semibold mb-4">Handling Payment Failures</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            If a payment fails, the user will see an error message and can try again. Common reasons for payment failures include:
-          </p>
-          <div className="space-y-2 mt-4">
-            <div className="p-4 rounded-lg border bg-card">
-              <h3 className="font-semibold text-sm mb-1">Insufficient Funds</h3>
-              <p className="text-xs text-muted-foreground">The user's account doesn't have enough balance</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card">
-              <h3 className="font-semibold text-sm mb-1">Card Declined</h3>
-              <p className="text-xs text-muted-foreground">The bank or card issuer declined the transaction</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card">
-              <h3 className="font-semibold text-sm mb-1">Network Issues</h3>
-              <p className="text-xs text-muted-foreground">Temporary connectivity problems</p>
-            </div>
-            <div className="p-4 rounded-lg border bg-card">
-              <h3 className="font-semibold text-sm mb-1">Invalid Payment Details</h3>
-              <p className="text-xs text-muted-foreground">Incorrect card number, CVV, or expiry date</p>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground mt-4">
-            Users can retry the payment immediately or come back later. No registration is created until payment is successful.
-          </p>
-        </div>
-
-        <div id="refunds">
-          <h2 className="text-2xl font-semibold mb-4">Refunds</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Refunds for event registrations are processed through Razorpay. To issue a refund:
-          </p>
-          <ol className="list-decimal list-inside space-y-2 ml-4 text-muted-foreground">
-            <li className="leading-relaxed">Access the event management dashboard</li>
-            <li className="leading-relaxed">Find the registration you want to refund</li>
-            <li className="leading-relaxed">Use Razorpay's dashboard or API to process the refund</li>
-            <li className="leading-relaxed">Update the registration status in Vihaya</li>
-          </ol>
-          <div className="p-5 rounded-lg border bg-primary/5 mt-4">
-            <p className="text-sm text-muted-foreground">
-              <strong>Note:</strong> Refund processing times depend on the payment method used. UPI and wallet refunds 
-              are typically instant, while card refunds may take 5-7 business days.
-            </p>
-          </div>
-        </div>
-
-        <div className="p-6 rounded-lg border bg-primary/5">
-          <h3 className="font-semibold mb-2">Best Practices</h3>
-          <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-            <li>Test your payment flow with a small amount before launching large events</li>
-            <li>Clearly communicate pricing and any additional charges to attendees</li>
-            <li>Set up special pricing categories early to avoid confusion</li>
-            <li>Monitor payment failures and provide support to users experiencing issues</li>
-            <li>Keep transaction records for accounting and tax purposes</li>
-            <li>Consider offering early-bird pricing to incentivize early registrations</li>
-          </ul>
         </div>
       </div>
     </div>

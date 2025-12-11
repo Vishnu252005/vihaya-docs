@@ -32,9 +32,9 @@ export default function InstallationPage() {
           <div className="space-y-4">
             <div>
               <h3 className="text-xl font-semibold mb-2">1. Clone the Repository</h3>
-              <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
-                <code>git clone https://github.com/Vishnu252005/Vihaya-App.git</code>
-              </pre>
+                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto">
+                    <code>git clone https://github.com/Vishnu252005/vihaya-docs.git</code>
+                  </pre>
             </div>
 
             <div>

@@ -85,7 +85,7 @@ export default function DocsFooter() {
             asChild
             className="h-8 text-muted-foreground hover:text-foreground"
           >
-            <Link href={`https://github.com/Vishnu252005/Vihaya-App/issues/new?title=Documentation%20Edit%20Request&body=Page:%20${pathname}`} target="_blank" rel="noopener noreferrer">
+            <Link href={`https://github.com/Vishnu252005/vihaya-docs/issues/new?title=Documentation%20Edit%20Request&body=Page:%20${pathname}`} target="_blank" rel="noopener noreferrer">
               <Pencil className="h-4 w-4 mr-1.5" />
               Suggest edits
             </Link>
@@ -96,7 +96,7 @@ export default function DocsFooter() {
             asChild
             className="h-8 text-muted-foreground hover:text-foreground"
           >
-            <Link href={`https://github.com/Vishnu252005/Vihaya-App/issues/new?title=Documentation%20Issue&body=Page:%20${pathname}`} target="_blank" rel="noopener noreferrer">
+            <Link href={`https://github.com/Vishnu252005/vihaya-docs/issues/new?title=Documentation%20Issue&body=Page:%20${pathname}`} target="_blank" rel="noopener noreferrer">
               <AlertTriangle className="h-4 w-4 mr-1.5" />
               Raise issue
             </Link>
@@ -149,7 +149,7 @@ export default function DocsFooter() {
             <Twitter className="h-5 w-5" />
           </Link>
           <Link
-            href="https://github.com/Vishnu252005/Vihaya-App"
+            href="https://github.com/Vishnu252005/vihaya-docs"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
