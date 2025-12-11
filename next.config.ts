@@ -14,8 +14,11 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-dialog', '@radix-ui/react-scroll-area'],
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-dialog', '@radix-ui/react-scroll-area', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-tooltip'],
   },
+  
+  // Enable prefetching for faster navigation
+  reactStrictMode: true,
 
   // Turbopack config (Next.js 16+ uses Turbopack by default)
   turbopack: {},

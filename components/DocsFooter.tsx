@@ -110,6 +110,7 @@ export default function DocsFooter() {
           {prevPage ? (
             <Link
               href={prevPage.href}
+              prefetch={true}
               className="flex items-center gap-2 group text-muted-foreground hover:text-foreground transition-colors"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -124,6 +125,7 @@ export default function DocsFooter() {
           {nextPage && (
             <Link
               href={nextPage.href}
+              prefetch={true}
               className="flex items-center gap-2 group text-muted-foreground hover:text-foreground transition-colors ml-auto"
             >
               <div className="flex flex-col items-end">

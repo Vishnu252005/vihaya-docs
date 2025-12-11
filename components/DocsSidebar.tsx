@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Sparkles, Code2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Sparkles, Code2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 
 type NavigationChild = 
   | { name: string; href: string }
@@ -101,6 +102,7 @@ function hasNestedChildren(item: NavigationChild): item is { name: string; child
 
 export default function DocsSidebar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openSections, setOpenSections] = useState<string[]>(() => {
     const sections: string[] = [];
     navigation.forEach((section) => {
@@ -124,6 +126,30 @@ export default function DocsSidebar() {
     return sections.length > 0 ? sections : ["Get Started"];
   });
 
+  // Listen for menu toggle from Header
+  useEffect(() => {
+    const handleToggle = (e: CustomEvent) => {
+      setIsMobileMenuOpen(e.detail.isOpen);
+    };
+    
+    const handleClose = () => {
+      setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener('toggleMobileMenu', handleToggle as EventListener);
+    window.addEventListener('closeMobileMenu', handleClose);
+    return () => {
+      window.removeEventListener('toggleMobileMenu', handleToggle as EventListener);
+      window.removeEventListener('closeMobileMenu', handleClose);
+    };
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+  }, [pathname]);
+
   const toggleSection = (sectionName: string) => {
     setOpenSections((prev) =>
       prev.includes(sectionName)
@@ -133,29 +159,68 @@ export default function DocsSidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-16 w-64 h-[calc(100vh-4rem)] border-r bg-background/95 backdrop-blur-sm z-40">
-      <ScrollArea className="h-full">
-        <div className="p-5">
-          {/* Guides Heading with Icons */}
-          <div className="px-3 py-3 mb-6 space-y-3">
-            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Guides
-            </h2>
-            <div className="space-y-1">
-              <Link
-                href="/docs"
-                className={cn(
-                  "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors",
-                  pathname === "/docs"
-                    ? "text-primary font-medium bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                )}
+    <>
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+          }}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={cn(
+        "fixed left-0 top-16 w-64 sm:w-72 md:w-64 h-[calc(100vh-4rem)] border-r bg-background/95 backdrop-blur-sm z-40 transition-transform duration-300 ease-in-out shadow-lg md:shadow-none",
+        "md:translate-x-0",
+        isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      )}>
+        <ScrollArea className="h-full">
+          <div className="p-4 sm:p-5">
+            {/* Mobile: Close Button */}
+            <div className="md:hidden flex items-center justify-between mb-3 pb-3 border-b">
+              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Menu
+              </h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+                }}
+                className="h-8 w-8"
               >
-                <FileText className="h-4 w-4" />
-                Documentation
-              </Link>
+                <X className="h-4 w-4" />
+              </Button>
             </div>
-          </div>
+            {/* Guides Heading with Icons */}
+            <div className="px-3 py-2 mb-4 space-y-2">
+              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Guides
+              </h2>
+              <div className="space-y-1">
+                <Link
+                  href="/docs"
+                  prefetch={true}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+                  }}
+                  className={cn(
+                    "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors",
+                    pathname === "/docs"
+                      ? "text-primary font-medium bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  )}
+                >
+                  <FileText className="h-4 w-4" />
+                  Documentation
+                </Link>
+              </div>
+            </div>
           
           <nav className="space-y-1">
             {navigation.map((section) => (
@@ -234,6 +299,11 @@ export default function DocsSidebar() {
                                         <Link
                                           key={nestedChild.href}
                                           href={nestedChild.href}
+                                          prefetch={true}
+                                          onClick={() => {
+                                            setIsMobileMenuOpen(false);
+                                            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+                                          }}
                                           className={cn(
                                             "flex items-center gap-2.5 px-3 py-2 text-xs rounded-md transition-colors relative",
                                             pathname === nestedChild.href
@@ -275,6 +345,11 @@ export default function DocsSidebar() {
                             <Link
                               key={item.href}
                               href={item.href}
+                              prefetch={true}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+                              }}
                               className={cn(
                                 "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors relative",
                                 pathname === item.href
@@ -293,6 +368,11 @@ export default function DocsSidebar() {
                 ) : (
                   <Link
                     href={section.href}
+                    prefetch={true}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      window.dispatchEvent(new CustomEvent('closeMobileMenu'));
+                    }}
                     className={cn(
                       "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
                       pathname === section.href
@@ -309,5 +389,6 @@ export default function DocsSidebar() {
         </div>
       </ScrollArea>
     </aside>
+    </>
   );
 }

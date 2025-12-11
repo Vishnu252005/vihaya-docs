@@ -36,12 +36,14 @@ export default function TableOfContents() {
         return;
       }
 
-      const headingList: Heading[] = Array.from(headingElements).map((heading) => {
+      const headingList: Heading[] = Array.from(headingElements).map((heading, index) => {
         const text = heading.textContent || "";
-        const id = heading.id || text.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || `heading-${Math.random().toString(36).substr(2, 9)}`;
-        
-        // Set ID if it doesn't exist
-        if (!heading.id) {
+        // Use existing ID if present, otherwise generate one
+        let id = heading.id;
+        if (!id) {
+          // Generate ID from text content
+          id = text.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || `heading-${index}`;
+          // Set ID on the heading element after hydration (safe to do in useEffect)
           heading.id = id;
         }
         

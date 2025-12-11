@@ -3,7 +3,7 @@ import { ArrowRight, Calendar, BookOpen, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/Logo";
-import ChatBot from "@/components/ChatBot";
+import ChatBotWrapper from "@/components/ChatBotWrapper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function Home() {
         <div className="w-full max-w-7xl mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Logo />
           <nav className="flex items-center gap-6">
-            <Link href="/docs" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/docs" prefetch={true} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Documentation
             </Link>
             <Link href="https://github.com/Vishnu252005/vihaya-docs" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
@@ -63,13 +63,13 @@ export default function Home() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button asChild size="lg" className="text-base h-12 px-8 shadow-lg hover:shadow-xl transition-shadow">
-              <Link href="/docs">
+              <Link href="/docs" prefetch={true}>
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-base h-12 px-8">
-              <Link href="/docs/quick-start">
+              <Link href="/docs/quick-start" prefetch={true}>
                 Quick Start Guide
               </Link>
             </Button>
@@ -148,7 +148,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-      <ChatBot />
+      <ChatBotWrapper />
     </div>
   );
 }

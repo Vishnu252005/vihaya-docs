@@ -17,7 +17,7 @@ export default function EventSettingsPage() {
 
       <div className="space-y-8 leading-7">
         <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+          <h2 id="overview" className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Event Settings allow you to modify your event after creation. You can update event information, change the banner, 
             adjust dates, modify contact details, and configure various event features. All changes are saved immediately and reflected in real-time.
@@ -30,7 +30,7 @@ export default function EventSettingsPage() {
         </div>
 
         <div id="edit-event-settings">
-          <h2 className="text-2xl font-semibold mb-4">Edit Event Settings</h2>
+          <h2 id="edit-event-settings" className="text-2xl font-semibold mb-4">Edit Event Settings</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             The Edit Event Settings form allows you to modify all aspects of your event configuration. 
             The form is organized into logical sections for easy navigation.
@@ -228,7 +228,7 @@ export default function EventSettingsPage() {
         </div>
 
         <div id="advanced-settings">
-          <h2 className="text-2xl font-semibold mb-4">Advanced Event Settings</h2>
+          <h2 id="advanced-event-settings" className="text-2xl font-semibold mb-4">Advanced Event Settings</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Additional settings available when creating or editing sub-events (or single events). These settings control event behavior and features.
           </p>
@@ -279,7 +279,7 @@ export default function EventSettingsPage() {
         </div>
 
         <div id="editing-limitations">
-          <h2 className="text-2xl font-semibold mb-4">Editing Limitations & Considerations</h2>
+          <h2 id="editing-limitations--considerations" className="text-2xl font-semibold mb-4">Editing Limitations & Considerations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Important considerations when editing events:
           </p>
@@ -317,7 +317,7 @@ export default function EventSettingsPage() {
         </div>
 
         <div id="best-practices">
-          <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+          <h2 id="best-practices" className="text-2xl font-semibold mb-4">Best Practices</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Tips for effectively managing event settings:
           </p>
