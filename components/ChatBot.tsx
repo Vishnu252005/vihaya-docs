@@ -142,7 +142,7 @@ const knowledgeBase: KnowledgeItem[] = [
   },
   {
     keywords: ["install", "setup", "installation", "get started", "begin"],
-    answer: "To install and set up Vihaya:\n\n**Requirements**:\n• Node.js (latest LTS version)\n• npm or yarn\n• Git\n\n**Installation Steps**:\n1. Clone the repository from GitHub\n2. Install dependencies (npm install)\n3. Configure environment variables\n4. Set up Firebase (if needed)\n5. Run the application (npm run dev)\n\n**Quick Start**:\n• Follow the Quick Start guide for faster setup\n• Check installation documentation for detailed steps\n• Configure required services\n\nCheck the Installation and Quick Start documentation for complete setup instructions.",
+    answer: "To install and use Vihaya:\n\n**Android App**:\n• Download from Google Play Store or direct download link\n• Requires Android 5.0 or higher\n• Visit the Installation guide for download links\n\n**Web Browser**:\n• Visit vihaya.app in your browser\n• No installation required\n• Works on all modern browsers\n\n**Quick Start**:\n• Follow the Quick Start guide to learn the basics\n• Check installation documentation for detailed steps\n• Start using Vihaya right away!\n\nCheck the Installation and Quick Start documentation for complete setup instructions.",
     links: [
       { text: "Installation", href: "/docs/installation" },
       { text: "Quick Start", href: "/docs/quick-start" },

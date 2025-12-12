@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function EventAnalyticsPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -15,7 +17,7 @@ export default function EventAnalyticsPage() {
 
       <div className="space-y-8 leading-7">
         <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+          <h2 id="overview" className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Event Analytics provides real-time insights into your event's performance. All metrics update automatically as registrations come in, 
             giving you instant visibility into registration trends, revenue, and attendee engagement.
@@ -26,10 +28,23 @@ export default function EventAnalyticsPage() {
               No manual refresh needed - metrics update automatically as your event progresses.
             </p>
           </div>
+          
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/event-analytics-dashboard.png"
+                alt="Event analytics dashboard showing summary cards for Total Events, Registrations, Revenue, and registration trends graph with peak registration hours"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
         </div>
 
         <div id="financial-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Financial Analytics</h2>
+          <h2 id="financial-analytics" className="text-2xl font-semibold mb-4">Financial Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Track all financial aspects of your event with comprehensive revenue metrics.
           </p>
@@ -78,7 +93,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="registration-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Registration Analytics</h2>
+          <h2 id="registration-analytics" className="text-2xl font-semibold mb-4">Registration Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Monitor registration trends and patterns to understand attendee behavior.
           </p>
@@ -118,10 +133,33 @@ export default function EventAnalyticsPage() {
               </p>
             </div>
           </div>
+          
+          <div className="my-6 grid gap-6 md:grid-cols-2">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/analytics-by-college-year.png"
+                alt="Analytics charts showing registrations by college (bar chart) and registrations by year (donut chart)"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/analytics-by-year-department.png"
+                alt="Analytics charts showing registrations by year (donut chart) and registrations by department (bar chart)"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
         </div>
 
         <div id="organizer-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Organizer-Level Analytics</h2>
+          <h2 id="organizer-level-analytics" className="text-2xl font-semibold mb-4">Organizer-Level Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             View aggregated analytics across all your events to understand your overall performance as an organizer.
           </p>
@@ -149,7 +187,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="event-status-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Event Status Analytics</h2>
+          <h2 id="event-status-analytics" className="text-2xl font-semibold mb-4">Event Status Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Track events by their status to understand your event pipeline.
           </p>
@@ -179,7 +217,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="sub-event-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Sub-Event Analytics</h2>
+          <h2 id="sub-event-analytics" className="text-2xl font-semibold mb-4">Sub-Event Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For parent events with sub-events, track analytics for each sub-event individually.
           </p>
@@ -199,7 +237,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="analytics-display">
-          <h2 className="text-2xl font-semibold mb-4">Analytics Display</h2>
+          <h2 id="analytics-display" className="text-2xl font-semibold mb-4">Analytics Display</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Analytics are presented in an easy-to-understand visual format.
           </p>
@@ -243,16 +281,10 @@ export default function EventAnalyticsPage() {
               </ul>
             </div>
           </div>
-
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of analytics dashboard here</p>
-          </div>
         </div>
 
         <div id="real-time-updates">
-          <h2 className="text-2xl font-semibold mb-4">Real-Time Updates</h2>
+          <h2 id="real-time-updates" className="text-2xl font-semibold mb-4">Real-Time Updates</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             All analytics update automatically using real-time database streams.
           </p>
@@ -275,7 +307,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="exporting-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Exporting Analytics</h2>
+          <h2 id="exporting-analytics" className="text-2xl font-semibold mb-4">Exporting Analytics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Export analytics data for external analysis, reporting, or record-keeping.
           </p>
@@ -295,7 +327,7 @@ export default function EventAnalyticsPage() {
         </div>
 
         <div id="using-analytics">
-          <h2 className="text-2xl font-semibold mb-4">Using Analytics Effectively</h2>
+          <h2 id="using-analytics-effectively" className="text-2xl font-semibold mb-4">Using Analytics Effectively</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Tips for leveraging analytics to improve your events:
           </p>

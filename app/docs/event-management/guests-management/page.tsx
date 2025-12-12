@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function RegistrationManagementPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -9,27 +11,22 @@ export default function RegistrationManagementPage() {
         Registration Management
       </h1>
       
-      <p className="text-lg text-muted-foreground mb-8 font-normal">
-        Manage all event registrations, view attendee details, track payments, and handle check-ins efficiently with Vihaya's comprehensive registration management system.
+      <p className="text-lg text-muted-foreground mb-8 font-normal leading-relaxed">
+        Manage all event registrations, view attendee details, track payments, and handle check-ins efficiently with Vihaya's comprehensive registration management system. 
+        Learn how to search, filter, export, and manage registrations effectively to ensure a smooth event experience.
       </p>
 
-      <div className="space-y-6 leading-7">
-        <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+      <div className="space-y-8 leading-7">
+        <div>
+          <h2 id="overview" className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             The Registration Management system provides a centralized dashboard to view, manage, and track all event registrations. 
             From viewing registration details to processing check-ins, everything you need is in one place.
           </p>
-          
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of registration management dashboard here</p>
-          </div>
         </div>
 
-        <div id="viewing-registrations">
-          <h2 className="text-2xl font-semibold mb-4">Viewing Registrations</h2>
+        <div>
+          <h2 id="viewing-registrations" className="text-2xl font-semibold mb-4">Viewing Registrations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Access all registrations from the event details page. Each registration shows comprehensive information:
           </p>
@@ -71,8 +68,8 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="registration-details">
-          <h2 className="text-2xl font-semibold mb-4">Registration Details View</h2>
+        <div>
+          <h2 id="registration-details-view" className="text-2xl font-semibold mb-4">Registration Details View</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Click on any registration to view expanded details. The details view shows:
           </p>
@@ -101,15 +98,22 @@ export default function RegistrationManagementPage() {
             </ul>
           </div>
           
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of registration details view here</p>
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/registered-users-management.png"
+                alt="Registered Users management screen showing search bar, user registration card with details, and delete option"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
-        <div id="search-and-filter">
-          <h2 className="text-2xl font-semibold mb-4">Search & Filter Registrations</h2>
+        <div>
+          <h2 id="search--filter-registrations" className="text-2xl font-semibold mb-4">Search & Filter Registrations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Quickly find specific registrations using powerful search and filter options:
           </p>
@@ -140,11 +144,23 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="export-data">
-          <h2 className="text-2xl font-semibold mb-4">Export Registration Data</h2>
+        <div>
+          <h2 id="export-registration-data" className="text-2xl font-semibold mb-4">Export Registration Data</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Export registration data for external use, accounting, or analysis:
           </p>
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/export-registration-data.png"
+                alt="Download Report modal showing PDF and Excel (CSV) export options"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
           <div className="p-5 rounded-lg border bg-card mt-4">
             <p className="text-sm text-muted-foreground mb-3">
               You can export registration data in various formats:
@@ -152,15 +168,11 @@ export default function RegistrationManagementPage() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <span><strong>CSV Format:</strong> For spreadsheet applications like Excel or Google Sheets</span>
+                <span><strong>PDF Format:</strong> Formatted reports for printing or sharing</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">•</span>
-                <span><strong>Excel Format:</strong> Direct Excel file with formatted columns</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">•</span>
-                <span><strong>PDF Reports:</strong> Formatted reports for printing or sharing</span>
+                <span><strong>Excel (CSV) Format:</strong> For spreadsheet applications like Excel or Google Sheets</span>
               </li>
             </ul>
             <p className="text-sm text-muted-foreground mt-3">
@@ -169,8 +181,8 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="food-coupon-management">
-          <h2 className="text-2xl font-semibold mb-4">Food Coupon Management</h2>
+        <div>
+          <h2 id="food-coupon-management" className="text-2xl font-semibold mb-4">Food Coupon Management</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For events with food coupons enabled, manage coupon information:
           </p>
@@ -199,8 +211,8 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="team-registrations">
-          <h2 className="text-2xl font-semibold mb-4">Team Registrations</h2>
+        <div>
+          <h2 id="team-registrations" className="text-2xl font-semibold mb-4">Team Registrations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For team events, view complete team information:
           </p>
@@ -226,8 +238,8 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="delete-registration">
-          <h2 className="text-2xl font-semibold mb-4">Deleting Registrations</h2>
+        <div>
+          <h2 id="deleting-registrations" className="text-2xl font-semibold mb-4">Deleting Registrations</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Remove registrations when needed. This action permanently deletes the registration and cannot be undone.
           </p>
@@ -263,8 +275,8 @@ export default function RegistrationManagementPage() {
           </div>
         </div>
 
-        <div id="registration-statistics">
-          <h2 className="text-2xl font-semibold mb-4">Registration Statistics</h2>
+        <div>
+          <h2 id="registration-statistics" className="text-2xl font-semibold mb-4">Registration Statistics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             View real-time statistics about your event registrations:
           </p>

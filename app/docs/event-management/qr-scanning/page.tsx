@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function QRScanningPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -15,7 +17,7 @@ export default function QRScanningPage() {
 
       <div className="space-y-8 leading-7">
         <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+          <h2 id="overview" className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vihaya uses QR codes for two main purposes: <strong>event ticket verification (check-in)</strong> and <strong>food coupon verification</strong>. 
             Each registered attendee receives unique QR codes that can be scanned at the event venue for instant verification.
@@ -28,7 +30,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="ticket-system">
-          <h2 className="text-2xl font-semibold mb-4">Ticketing System</h2>
+          <h2 id="ticketing-system" className="text-2xl font-semibold mb-4">Ticketing System</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vihaya automatically generates digital tickets for all event registrations. Each ticket includes a unique QR code that serves as proof of registration.
           </p>
@@ -68,15 +70,32 @@ export default function QRScanningPage() {
             </div>
           </div>
 
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of event ticket and food coupon ticket here</p>
+          <div className="my-6 grid gap-6 md:grid-cols-2">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/event-ticket-qr.png"
+                alt="Event ticket showing QR code, registration ID, event details, and attendee information"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/food-coupon-qr.png"
+                alt="Food coupon ticket showing QR code, coupon ID, event details, and redemption instructions"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         <div id="accessing-tickets">
-          <h2 className="text-2xl font-semibold mb-4">Accessing Your Tickets</h2>
+          <h2 id="accessing-your-tickets" className="text-2xl font-semibold mb-4">Accessing Your Tickets</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Attendees can access their tickets in several ways:
           </p>
@@ -103,7 +122,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="event-check-in">
-          <h2 className="text-2xl font-semibold mb-4">Event Check-In (Ticket Verification)</h2>
+          <h2 id="event-check-in-ticket-verification" className="text-2xl font-semibold mb-4">Event Check-In (Ticket Verification)</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Event check-in is the process of verifying that an attendee has registered for the event. This is done by scanning the event registration ticket QR code.
           </p>
@@ -140,15 +159,22 @@ export default function QRScanningPage() {
             </div>
           </div>
 
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of event check-in/verification screen here</p>
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/event-check-in-scanning.png"
+                alt="Event check-in QR code scanning interface showing scan QR code prompt"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         <div id="food-coupon-verification">
-          <h2 className="text-2xl font-semibold mb-4">Food Coupon Verification</h2>
+          <h2 id="food-coupon-verification" className="text-2xl font-semibold mb-4">Food Coupon Verification</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Food coupon verification is a separate process from event check-in. It's used to verify that an attendee has purchased a food coupon and can redeem it at the food counter.
           </p>
@@ -192,15 +218,27 @@ export default function QRScanningPage() {
             </div>
           </div>
 
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of food coupon verification screen here</p>
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/food-coupon-verification-scanning.png"
+                alt="Food coupon verification showing registered user with verified status and food coupon verified status"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+          <div className="p-4 rounded-lg border bg-green-500/10 border-green-500/20 mt-4">
+            <p className="text-sm text-muted-foreground">
+              <strong className="text-green-700 dark:text-green-400">✓ Verification Status:</strong> After successful verification, the registration shows a "VERIFIED" status badge and the food coupon status displays as "Verified" with a green checkmark. This confirms that both the event ticket and food coupon have been successfully scanned and verified.
+            </p>
           </div>
         </div>
 
         <div id="qr-scanning-methods">
-          <h2 className="text-2xl font-semibold mb-4">QR Scanning Methods</h2>
+          <h2 id="qr-scanning-methods" className="text-2xl font-semibold mb-4">QR Scanning Methods</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vihaya supports multiple methods for scanning QR codes:
           </p>
@@ -253,7 +291,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="qr-code-format">
-          <h2 className="text-2xl font-semibold mb-4">QR Code Format & Structure</h2>
+          <h2 id="qr-code-format-structure" className="text-2xl font-semibold mb-4">QR Code Format & Structure</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Understanding the QR code structure helps with troubleshooting:
           </p>
@@ -282,7 +320,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="verification-process">
-          <h2 className="text-2xl font-semibold mb-4">Verification Process Details</h2>
+          <h2 id="verification-process-details" className="text-2xl font-semibold mb-4">Verification Process Details</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Here's what happens behind the scenes when you scan a QR code:
           </p>
@@ -322,7 +360,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="verification-status">
-          <h2 className="text-2xl font-semibold mb-4">Verification Status</h2>
+          <h2 id="verification-status" className="text-2xl font-semibold mb-4">Verification Status</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Each ticket and coupon has a verification status that can be tracked:
           </p>
@@ -348,7 +386,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="error-handling">
-          <h2 className="text-2xl font-semibold mb-4">Error Handling</h2>
+          <h2 id="error-handling" className="text-2xl font-semibold mb-4">Error Handling</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Common issues and how the system handles them:
           </p>
@@ -382,7 +420,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="best-practices">
-          <h2 className="text-2xl font-semibold mb-4">Best Practices for Event Day</h2>
+          <h2 id="best-practices-for-event-day" className="text-2xl font-semibold mb-4">Best Practices for Event Day</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Tips for smooth check-in and food coupon verification:
           </p>
@@ -402,7 +440,7 @@ export default function QRScanningPage() {
         </div>
 
         <div id="ticket-sharing">
-          <h2 className="text-2xl font-semibold mb-4">Sharing Tickets</h2>
+          <h2 id="sharing-tickets" className="text-2xl font-semibold mb-4">Sharing Tickets</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Attendees can share their tickets in multiple ways:
           </p>

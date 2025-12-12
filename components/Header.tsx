@@ -3,11 +3,10 @@
 import Link from "next/link";
 import { Search, Menu, X, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Logo } from "@/components/Logo";
-import { cn } from "@/lib/utils";
+import { SearchModal } from "@/components/SearchModal";
 
 // Lazy load ThemeToggle to reduce initial bundle size
 const ThemeToggle = dynamic(() => import("@/components/theme-toggle").then(mod => ({ default: mod.ThemeToggle })), {
@@ -18,10 +17,23 @@ const ThemeToggle = dynamic(() => import("@/components/theme-toggle").then(mod =
 export default function Header() {
   const [isMac, setIsMac] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   useEffect(() => {
     setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0);
+  }, []);
+
+  // Keyboard shortcut for search (Ctrl+K / Cmd+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchModalOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Close mobile menu when resizing to desktop
@@ -29,7 +41,6 @@ export default function Header() {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMobileMenuOpen(false);
-        setIsMobileSearchOpen(false);
         window.dispatchEvent(new CustomEvent('closeMobileMenu'));
       }
     };
@@ -40,22 +51,12 @@ export default function Header() {
   const toggleMobileMenu = () => {
     const newState = !isMobileMenuOpen;
     setIsMobileMenuOpen(newState);
-    // Close search when opening menu
-    if (newState) {
-      setIsMobileSearchOpen(false);
-    }
     // Dispatch event for sidebar to listen
     window.dispatchEvent(new CustomEvent('toggleMobileMenu', { detail: { isOpen: newState } }));
   };
 
-  const toggleMobileSearch = () => {
-    const newState = !isMobileSearchOpen;
-    setIsMobileSearchOpen(newState);
-    // Close menu when opening search
-    if (newState) {
-      setIsMobileMenuOpen(false);
-      window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-    }
+  const openSearchModal = () => {
+    setIsSearchModalOpen(true);
   };
 
   // Listen for close events from sidebar
@@ -100,19 +101,22 @@ export default function Header() {
         <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 min-w-0">
           {/* Search - Hidden on mobile, shown on tablet+ */}
           <div className="hidden sm:flex flex-1 justify-center max-w-2xl min-w-0">
-            <div className="relative w-full group">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary pointer-events-none" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="pl-10 pr-20 w-full h-9 bg-muted/50 border-muted-foreground/20 focus:bg-background focus:border-primary/50 transition-colors"
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 text-xs text-muted-foreground pointer-events-none">
-                <kbd className="px-1.5 py-0.5 bg-background/50 border border-border rounded text-xs font-mono hidden lg:inline">
-                  {isMac ? '⌘' : 'Ctrl'} K
-                </kbd>
+            <button
+              onClick={openSearchModal}
+              className="relative w-full group"
+            >
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary pointer-events-none" />
+                <div className="pl-10 pr-20 w-full h-9 bg-muted/50 border border-muted-foreground/20 rounded-md flex items-center text-sm text-muted-foreground cursor-text group-hover:bg-background group-hover:border-primary/50 transition-colors">
+                  Search...
+                </div>
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 text-xs text-muted-foreground pointer-events-none">
+                  <kbd className="px-1.5 py-0.5 bg-background/50 border border-border rounded text-xs font-mono hidden lg:inline">
+                    {isMac ? '⌘' : 'Ctrl'} K
+                  </kbd>
+                </div>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -123,15 +127,10 @@ export default function Header() {
             variant="ghost"
             size="icon"
             className="sm:hidden h-9 w-9"
-            onClick={toggleMobileSearch}
+            onClick={openSearchModal}
             aria-label="Search"
-            aria-expanded={isMobileSearchOpen}
           >
-            {isMobileSearchOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Search className="h-5 w-5" />
-            )}
+            <Search className="h-5 w-5" />
           </Button>
           <Button
             variant="ghost"
@@ -159,20 +158,8 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile: Search Bar (shown when search icon is clicked) */}
-      {isMobileSearchOpen && (
-        <div className="sm:hidden absolute top-full left-0 right-0 bg-background border-b p-3 z-50 shadow-lg">
-          <div className="relative w-full group">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary pointer-events-none" />
-            <Input
-              type="search"
-              placeholder="Search documentation..."
-              className="pl-10 pr-4 w-full h-10 bg-muted/50 border-muted-foreground/20 focus:bg-background focus:border-primary/50 transition-colors"
-              autoFocus
-            />
-          </div>
-        </div>
-      )}
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchModalOpen} onClose={() => setIsSearchModalOpen(false)} />
     </header>
   );
 }

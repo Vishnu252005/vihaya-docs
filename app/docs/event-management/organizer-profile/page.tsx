@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function OrganizerProfilePage() {
   return (
     <div className="max-w-none space-y-8">
@@ -15,21 +17,28 @@ export default function OrganizerProfilePage() {
 
       <div className="space-y-8 leading-7">
         <div id="overview">
-          <h2 className="text-2xl font-semibold mb-4">Overview</h2>
+          <h2 id="overview" className="text-2xl font-semibold mb-4">Overview</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             The Organizer Profile is your personalized dashboard that gives you complete control over your events. 
             From here, you can view your statistics, manage events, create new events, and customize your profile information.
           </p>
           
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of the Organizer Profile dashboard here</p>
+          <div className="my-6 flex justify-center">
+            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+              <Image
+                src="/images/organizer-profile-view.png"
+                alt="Organizer Profile view showing profile picture, event statistics, social media links, and current events tab"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         <div id="profile-information">
-          <h2 className="text-2xl font-semibold mb-4">Profile Information</h2>
+          <h2 id="profile-information" className="text-2xl font-semibold mb-4">Profile Information</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Your organizer profile displays your personal information and allows you to customize your public profile.
           </p>
@@ -81,7 +90,7 @@ export default function OrganizerProfilePage() {
         </div>
 
         <div id="dashboard-statistics">
-          <h2 className="text-2xl font-semibold mb-4">Dashboard Statistics</h2>
+          <h2 id="dashboard-statistics" className="text-2xl font-semibold mb-4">Dashboard Statistics</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Real-time statistics calculated from all your events, giving you a quick overview of your event management performance.
           </p>
@@ -158,7 +167,7 @@ export default function OrganizerProfilePage() {
         </div>
 
         <div id="event-cards">
-          <h2 className="text-2xl font-semibold mb-4">Event Cards</h2>
+          <h2 id="event-cards" className="text-2xl font-semibold mb-4">Event Cards</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Each event you create is displayed as a card in your organizer profile, showing key information and quick actions.
           </p>
@@ -196,15 +205,48 @@ export default function OrganizerProfilePage() {
             </div>
           </div>
 
-          {/* Screenshot placeholder */}
-          <div className="my-6 p-8 rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 text-center">
-            <p className="text-sm text-muted-foreground mb-2">📸 Screenshot Placeholder</p>
-            <p className="text-xs text-muted-foreground">Add screenshot of event cards here</p>
+          <div className="my-6 flex justify-center">
+            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+              <Image
+                src="/images/organizer-events-cards.png"
+                alt="Event cards showing event details, tags, and action buttons"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="my-6 flex justify-center">
+            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+              <Image
+                src="/images/event-details.png"
+                alt="Event details page showing event information, action buttons, authorized emails, and analytics"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="my-6 flex justify-center">
+            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+              <Image
+                src="/images/event-sub-events.png"
+                alt="Event page showing sub-events and registered users sections"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         <div id="quick-actions">
-          <h2 className="text-2xl font-semibold mb-4">Quick Actions</h2>
+          <h2 id="quick-actions" className="text-2xl font-semibold mb-4">Quick Actions</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Quick access buttons for the most common organizer tasks, located prominently on your profile dashboard.
           </p>
@@ -257,7 +299,7 @@ export default function OrganizerProfilePage() {
         </div>
 
         <div id="event-management-section">
-          <h2 className="text-2xl font-semibold mb-4">Event Management Section</h2>
+          <h2 id="event-management-section" className="text-2xl font-semibold mb-4">Event Management Section</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             A dedicated section on your profile that provides quick access to comprehensive event management features.
           </p>
@@ -274,7 +316,7 @@ export default function OrganizerProfilePage() {
         </div>
 
         <div id="authorized-emails">
-          <h2 className="text-2xl font-semibold mb-4">Authorized Emails</h2>
+          <h2 id="authorized-emails" className="text-2xl font-semibold mb-4">Authorized Emails</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Manage which email addresses have access to manage your events. This allows you to delegate event management to team members or volunteers.
           </p>
@@ -293,10 +335,23 @@ export default function OrganizerProfilePage() {
               See the <a href="/docs/event-management/in-event#authorized-emails" className="text-primary hover:underline">In-Event Features</a> documentation for details.
             </p>
           </div>
+          
+          <div className="my-6">
+            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+              <Image
+                src="/images/authorized-emails-management.png"
+                alt="Event management page showing authorized emails section with creator and authorized email addresses"
+                width={1080}
+                height={1920}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
         </div>
 
         <div id="accessing-organizer-profile">
-          <h2 className="text-2xl font-semibold mb-4">Accessing Your Organizer Profile</h2>
+          <h2 id="accessing-your-organizer-profile" className="text-2xl font-semibold mb-4">Accessing Your Organizer Profile</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             How to access and navigate to your organizer profile.
           </p>
@@ -318,7 +373,7 @@ export default function OrganizerProfilePage() {
         </div>
 
         <div id="best-practices">
-          <h2 className="text-2xl font-semibold mb-4">Best Practices</h2>
+          <h2 id="best-practices" className="text-2xl font-semibold mb-4">Best Practices</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Tips for effectively using your organizer profile:
           </p>
@@ -339,4 +394,8 @@ export default function OrganizerProfilePage() {
     </div>
   );
 }
+
+
+
+
 
