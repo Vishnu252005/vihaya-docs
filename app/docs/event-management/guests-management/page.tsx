@@ -101,7 +101,7 @@ export default function RegistrationManagementPage() {
           <div className="my-6">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/registered-users-management.png"
+                src="/images/events/registered-users-management.png"
                 alt="Registered Users management screen showing search bar, user registration card with details, and delete option"
                 width={1080}
                 height={1920}
@@ -152,7 +152,7 @@ export default function RegistrationManagementPage() {
           <div className="my-6">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/export-registration-data.png"
+                src="/images/events/export-registration-data.png"
                 alt="Download Report modal showing PDF and Excel (CSV) export options"
                 width={1080}
                 height={1920}

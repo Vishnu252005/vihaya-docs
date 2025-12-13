@@ -30,11 +30,7 @@ const navigation: Array<{ name: string; href: string }> = [
   { name: "Sharing Notes", href: "/docs/notes/sharing" },
   { name: "AI Overview", href: "/docs/ai/overview" },
   { name: "Getting Started with AI", href: "/docs/ai/getting-started" },
-  { name: "Study Assistance", href: "/docs/ai/study-assistance" },
-  { name: "Note Enhancement", href: "/docs/ai/note-enhancement" },
-  { name: "Question & Answer", href: "/docs/ai/qa" },
   { name: "AI Commands", href: "/docs/ai/commands" },
-  { name: "Best Practices", href: "/docs/ai/best-practices" },
 ];
 
 export default function DocsFooter() {

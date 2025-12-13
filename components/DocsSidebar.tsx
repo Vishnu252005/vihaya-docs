@@ -83,11 +83,12 @@ const navigation: NavigationItem[] = [
     children: [
       { name: "AI Overview", href: "/docs/ai/overview" },
       { name: "Getting Started with AI", href: "/docs/ai/getting-started" },
-      { name: "Study Assistance", href: "/docs/ai/study-assistance" },
-      { name: "Note Enhancement", href: "/docs/ai/note-enhancement" },
-      { name: "Question & Answer", href: "/docs/ai/qa" },
+      { name: "AI Event Creation", href: "/docs/ai/event-creation" },
+      { name: "Resume Optimization", href: "/docs/ai/resume-optimization" },
+      { name: "Screenshot & Image Analysis", href: "/docs/ai/screenshot-tool" },
+      { name: "PDF Document Analysis", href: "/docs/ai/pdf-analysis" },
+      { name: "Voice Assistant", href: "/docs/ai/voice-assistant" },
       { name: "AI Commands", href: "/docs/ai/commands" },
-      { name: "Best Practices", href: "/docs/ai/best-practices" },
     ],
   },
 ];

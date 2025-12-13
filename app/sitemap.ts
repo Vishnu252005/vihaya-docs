@@ -29,11 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/docs/notes/sharing',
     '/docs/ai/overview',
     '/docs/ai/getting-started',
-    '/docs/ai/study-assistance',
-    '/docs/ai/note-enhancement',
-    '/docs/ai/qa',
     '/docs/ai/commands',
-    '/docs/ai/best-practices',
   ]
 
   return routes.map((route) => ({
@@ -43,6 +39,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1.0 : route.startsWith('/docs') ? 0.8 : 0.6,
   }))
 }
+
+
 
 
 

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function AIGettingStartedPage() {
   return (
     <div className="max-w-none space-y-8">
@@ -14,6 +16,19 @@ export default function AIGettingStartedPage() {
       </p>
 
       <div className="space-y-6 leading-7">
+        <div>
+          <div className="mb-6 rounded-lg border bg-card overflow-hidden">
+            <Image 
+              src="/images/ai/ai-resume-optimization.png" 
+              alt="Vihaya AI Assistant Interface - Main chat interface with AI modes and input options"
+              width={1200}
+              height={800}
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+        </div>
+
         <div>
           <h2 className="text-2xl font-semibold mb-4">Accessing the AI Assistant</h2>
           <p className="mb-4">
@@ -68,6 +83,24 @@ export default function AIGettingStartedPage() {
               </code>
             </div>
             <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Create Events</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Create events using natural language (Organizers/Admins only):
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                "Create a Flutter Workshop" or "Create an event for hackathon"
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Optimize Resume</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Optimize your resume for specific job roles:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                "Make my resume for Flutter Developer" or "Optimize resume for Software Engineer"
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
               <h3 className="font-semibold mb-2">Get Explanations</h3>
               <p className="text-sm text-muted-foreground mb-2">
                 Request explanations for complex topics:
@@ -83,6 +116,51 @@ export default function AIGettingStartedPage() {
               </p>
               <code className="text-xs bg-muted px-2 py-1 rounded block">
                 "Help me solve this: [problem description]"
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Analyze Screenshots</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Capture and analyze images, diagrams, or visual content:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                Use the screenshot tool to capture content, then ask questions about it
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Analyze PDF Documents</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Upload PDF files and get summaries and analysis:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                Attach a PDF file and ask "Summarize this PDF" or "What are the main points?"
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Analyze Images</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Upload images and get detailed analysis:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                Attach an image and ask questions about it, or let AI describe what it sees
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Web Search</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Get real-time information from the web:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                Ask questions that require current information - AI will search the web automatically
+              </code>
+            </div>
+            <div className="p-4 rounded-lg border bg-card">
+              <h3 className="font-semibold mb-2">Voice Assistant</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Interact using voice commands:
+              </p>
+              <code className="text-xs bg-muted px-2 py-1 rounded block">
+                Open Vihaya Voice and speak your questions naturally - AI responds with voice
               </code>
             </div>
           </div>
@@ -112,8 +190,20 @@ export default function AIGettingStartedPage() {
           </ul>
           <p className="mt-4">
             Learn more about{" "}
-            <a href="/docs/ai/best-practices" className="text-primary hover:underline">
-              Best Practices
+            <a href="/docs/ai/event-creation" className="text-primary hover:underline">
+              AI Event Creation
+            </a>
+            ,{" "}
+            <a href="/docs/ai/resume-optimization" className="text-primary hover:underline">
+              Resume Optimization
+            </a>
+            ,{" "}
+            <a href="/docs/ai/screenshot-tool" className="text-primary hover:underline">
+              Screenshot & Image Analysis
+            </a>
+            , and{" "}
+            <a href="/docs/ai/voice-assistant" className="text-primary hover:underline">
+              Voice Assistant
             </a>.
           </p>
         </div>

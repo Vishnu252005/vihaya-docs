@@ -34,7 +34,7 @@ export default function EventOverviewPage() {
           <div className="my-6">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/event-details-view.png"
+                src="/images/events/event-details-view.png"
                 alt="Event details view showing event poster, title, date, location, about section, and contact information"
                 width={1080}
                 height={1920}
@@ -54,7 +54,7 @@ export default function EventOverviewPage() {
           <div className="my-6">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/event-details-with-sub-events.png"
+                src="/images/events/event-details-with-sub-events.png"
                 alt="Event details view showing sub-events section with event cards for Future of Generative AI and AI Ideathon"
                 width={1080}
                 height={1920}

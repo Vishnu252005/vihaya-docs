@@ -12,7 +12,7 @@ A modern, responsive Next.js documentation website for **Vihaya** - The ultimate
 - **Comprehensive Guides**: Complete documentation covering all Vihaya features
 - **Event Management**: Detailed guides for creating, managing, and analyzing events
 - **Engineering Notes**: Documentation for note-taking, markdown, and organization
-- **AI Assistant**: Guides for using AI features, commands, and best practices
+- **AI Assistant**: Guides for using AI features, commands, event creation, resume optimization, and best practices
 - **Organizer Tools**: Complete organizer profile and event management documentation
 
 ### 🎨 Design & UX
@@ -50,7 +50,7 @@ A modern, responsive Next.js documentation website for **Vihaya** - The ultimate
   - Post Event Management
   - Child Events
 - **Engineering Notes**: Overview, Creating, Organizing, Markdown, Code Blocks, Search, Sharing
-- **AI Assistant**: Overview, Getting Started, Study Assistance, Note Enhancement, Q&A, Commands, Best Practices
+- **AI Assistant**: Overview, Getting Started, AI Event Creation, Resume Optimization, Screenshot & Image Analysis, PDF Document Analysis, Voice Assistant, Commands
 
 ## 🚀 Getting Started
 

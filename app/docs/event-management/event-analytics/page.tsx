@@ -32,7 +32,7 @@ export default function EventAnalyticsPage() {
           <div className="my-6">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/event-analytics-dashboard.png"
+                src="/images/events/event-analytics-dashboard.png"
                 alt="Event analytics dashboard showing summary cards for Total Events, Registrations, Revenue, and registration trends graph with peak registration hours"
                 width={1080}
                 height={1920}
@@ -137,7 +137,7 @@ export default function EventAnalyticsPage() {
           <div className="my-6 grid gap-6 md:grid-cols-2">
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/analytics-by-college-year.png"
+                src="/images/events/analytics-by-college-year.png"
                 alt="Analytics charts showing registrations by college (bar chart) and registrations by year (donut chart)"
                 width={1080}
                 height={1920}
@@ -147,7 +147,7 @@ export default function EventAnalyticsPage() {
             </div>
             <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
               <Image
-                src="/images/analytics-by-year-department.png"
+                src="/images/events/analytics-by-year-department.png"
                 alt="Analytics charts showing registrations by year (donut chart) and registrations by department (bar chart)"
                 width={1080}
                 height={1920}

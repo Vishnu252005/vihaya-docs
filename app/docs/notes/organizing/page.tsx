@@ -19,7 +19,7 @@ export default function OrganizingNotesPage() {
           <div className="my-6 flex justify-center">
             <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
               <Image
-                src="/images/mathematics-modules-list.png"
+                src="/images/notes/mathematics-modules-list.png"
                 alt="Mathematics modules list showing chapters organized in numerical order with notes and PYQ file counts"
                 width={1080}
                 height={1920}
