@@ -73,6 +73,11 @@ export default function Home() {
                 Quick Start Guide
               </Link>
             </Button>
+            <Button asChild variant="outline" size="lg" className="text-base h-12 px-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+              <Link href="/download" prefetch={true}>
+                Download for Windows
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -137,6 +142,9 @@ export default function Home() {
             <div className="flex gap-6">
               <Link href="/docs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Documentation
+              </Link>
+              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Privacy Policy
               </Link>
               <Link href="https://github.com/Vishnu252005/vihaya-docs" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 GitHub

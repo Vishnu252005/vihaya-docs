@@ -114,35 +114,35 @@ export default function QuickStartPage() {
           <div className="ml-13 space-y-3">
             <p className="text-muted-foreground mb-4">
               Events are at the heart of Vihaya. Here's how to create one quickly:
-            </p>
+          </p>
             <ol className="list-decimal list-inside space-y-3 ml-4">
               <li className="pl-2">
                 <strong>Navigate to Events</strong>
-                <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                   Click on the <strong>Events</strong> tab in the bottom navigation or from the main menu.
-                </p>
-              </li>
+              </p>
+            </li>
               <li className="pl-2">
                 <strong>Click "Create Event"</strong>
-                <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                   Tap the <strong>+</strong> button or "Create Event" button to start.
-                </p>
-              </li>
+              </p>
+            </li>
               <li className="pl-2">
                 <strong>Fill Basic Information</strong>
-                <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                   Enter event name, select type (Workshop, Conference, etc.), date, time, and location.
-                </p>
-              </li>
+              </p>
+            </li>
               <li className="pl-2">
                 <strong>Set Pricing & Capacity</strong>
-                <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                   Choose if it's free or paid, set ticket price, and maximum capacity.
-                </p>
-              </li>
+              </p>
+            </li>
               <li className="pl-2">
                 <strong>Publish Your Event</strong>
-                <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                   Review all details and click <strong>Publish</strong>. Your event is now live!
                 </p>
               </li>
@@ -196,9 +196,9 @@ export default function QuickStartPage() {
                 <strong>Search & Filter</strong>
                 <p className="text-sm text-muted-foreground mt-1">
                   Use the search bar to quickly find notes by title or content.
-                </p>
-              </li>
-            </ol>
+              </p>
+            </li>
+          </ol>
           </div>
         </div>
 
@@ -214,8 +214,8 @@ export default function QuickStartPage() {
             <p className="text-muted-foreground mb-4">
               Vihaya's AI Assistant is your intelligent study companion. Here are quick ways to use it:
             </p>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="p-4 rounded-lg border bg-card">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="p-4 rounded-lg border bg-card">
                 <div className="flex items-center gap-2 mb-2">
                   <MessageSquare className="h-4 w-4 text-primary" />
                   <h3 className="font-semibold text-sm">Ask Questions</h3>
