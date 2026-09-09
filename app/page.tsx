@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calendar, BookOpen, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar, Code2, QrCode, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/Logo";
@@ -8,11 +8,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Welcome to Vihaya",
-  description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance. Get started with Vihaya today!",
-  keywords: ["Vihaya", "Event Management", "Engineering Notes", "AI Assistant", "Study Assistant", "Tech Events"],
+  description: "Documentation for Vihaya Events. Get started with Vihaya today!",
+  keywords: ["Vihaya Events", "Event Ticketing", "Event Management", "API Reference", "Registration", "QR Check-in"],
   openGraph: {
     title: "Welcome to Vihaya",
-    description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance.",
+    description: "Documentation for Vihaya Events.",
     type: "website",
   },
 };
@@ -50,14 +50,14 @@ export default function Home() {
         <div className="mx-auto max-w-4xl text-center space-y-8">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              <Sparkles className="h-4 w-4" />
+              <Rocket className="h-4 w-4" />
               <span>Your All-in-One Platform</span>
             </div>
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Welcome to Vihaya
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Your all-in-one platform for event management, engineering notes, and AI-powered study assistance.
+              Documentation for Vihaya Events.
             </p>
           </div>
           
@@ -74,8 +74,8 @@ export default function Home() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="text-base h-12 px-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              <Link href="/download" prefetch={true}>
-                Download for Windows
+              <Link href="/docs/api" prefetch={true}>
+                API Reference
               </Link>
             </Button>
           </div>
@@ -101,14 +101,14 @@ export default function Home() {
 
             <div className="group rounded-xl border bg-card p-8 space-y-4 hover:shadow-xl transition-all duration-300 hover:border-primary/50">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 group-hover:scale-110 transition-transform">
-                <BookOpen className="h-7 w-7 text-primary" />
+                <Code2 className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold">Engineering Notes</h3>
+              <h3 className="text-xl font-semibold">API &amp; SDKs</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Organize your engineering notes with markdown support, code blocks, and powerful search capabilities.
+                Take registrations and payments from your own front end. REST API with official SDKs for seven languages.
               </p>
               <Button asChild variant="ghost" className="w-full mt-6 group-hover:text-primary">
-                <Link href="/docs/notes/overview">
+                <Link href="/docs/api">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -116,14 +116,14 @@ export default function Home() {
 
             <div className="group rounded-xl border bg-card p-8 space-y-4 hover:shadow-xl transition-all duration-300 hover:border-primary/50">
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 group-hover:scale-110 transition-transform">
-                <Sparkles className="h-7 w-7 text-primary" />
+                <QrCode className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold">AI Assistant</h3>
+              <h3 className="text-xl font-semibold">Check-in &amp; Analytics</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Get instant help with your studies. Ask questions, enhance notes, and accelerate your learning with AI.
+                Scan tickets at the gate, run multiple desks at once, and see turnout and revenue live.
               </p>
               <Button asChild variant="ghost" className="w-full mt-6 group-hover:text-primary">
-                <Link href="/docs/ai/overview">
+                <Link href="/docs/event-management/qr-scanning">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

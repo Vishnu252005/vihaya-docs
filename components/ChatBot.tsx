@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Trash2, Sparkles, ExternalLink } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Trash2, Bot, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -121,24 +121,16 @@ const knowledgeBase: KnowledgeItem[] = [
     relatedTopics: ["reports", "analytics", "archive"],
   },
   {
-    keywords: ["notes", "engineering", "study", "markdown", "code blocks"],
-    answer: "Engineering Notes help you organize study materials:\n\n**Creating Notes**:\n• Create notes with markdown support\n• Add code blocks with syntax highlighting\n• Rich text formatting\n• Organize by subject, module, semester\n\n**Features**:\n• Markdown syntax support\n• Code blocks with syntax highlighting\n• Search and filter notes\n• Share notes with others\n• Organize by categories\n\n**Organization**:\n• Organize by subject\n• Group by modules\n• Sort by semester\n• Tag and categorize\n\nCheck the Engineering Notes documentation for complete guide.",
-    links: [
-      { text: "Notes Overview", href: "/docs/notes/overview" },
-      { text: "Creating Notes", href: "/docs/notes/creating-notes" },
-      { text: "Markdown Support", href: "/docs/notes/markdown" },
-    ],
-    relatedTopics: ["markdown", "code blocks", "organizing"],
+    keywords: ["api", "rest", "sdk", "developer", "integrate", "headless", "webhook"],
+    answer: "Vihaya Events has a REST API you can build your own front end on:\n\n**Getting a key**:\n• Create one at Developer → API keys in your dashboard\n• Send it as the x-api-key header on every request\n• Call /api/v1/me to confirm which account it belongs to\n\n**Taking registrations**:\n• Free events are a single call\n• Paid events are two — post the attendee to get a Razorpay order, then post back the paymentId to confirm\n\n**SDKs**: official libraries for JavaScript, Python, PHP, Ruby, Go, Java and Flutter.\n\nSee the API Reference for the full guide.",
+    links: [{ text: "API Reference", href: "/docs/api" }, { text: "Taking Payment", href: "/docs/api/payments" }],
+    relatedTopics: ["api keys", "sdks", "webhooks"],
   },
   {
-    keywords: ["ai", "assistant", "chat", "study", "help", "question"],
-    answer: "AI Assistant provides intelligent study help:\n\n**Features**:\n• Study assistance and explanations\n• Note enhancement\n• Question & Answer\n• Code help and generation\n• AI commands for specific tasks\n\n**Getting Started**:\n• Access AI Assistant from main navigation\n• Start chatting with AI\n• Use commands for specific tasks\n• Follow best practices for optimal results\n\n**Best Practices**:\n• Ask clear, specific questions\n• Use AI commands effectively\n• Review AI suggestions\n• Enhance notes with AI help\n\nCheck the AI Assistant documentation for complete guide.",
-    links: [
-      { text: "AI Overview", href: "/docs/ai/overview" },
-      { text: "Getting Started with AI", href: "/docs/ai/getting-started" },
-      { text: "AI Commands", href: "/docs/ai/commands" },
-    ],
-    relatedTopics: ["study assistance", "commands", "best practices"],
+    keywords: ["sdks", "library", "npm", "pip", "composer", "gem", "package"],
+    answer: "Seven official SDKs, all published:\n\n• JavaScript/TypeScript — npm install vihaya-sdk\n• Python — pip install vihaya-events\n• PHP — composer require vihaya/events\n• Ruby — gem install vihaya-events\n• Go — go get github.com/Vishnu252005/vihaya-sdk-go\n• Java/Kotlin — via JitPack\n• Flutter/Dart — flutter pub add vihaya_sdk_flutter\n\nThey all wrap the same four calls: events.list, events.get, events.register and payments.verify. Event creation and management are REST-only.",
+    links: [{ text: "SDKs", href: "/docs/api/sdks" }],
+    relatedTopics: ["api", "integration"],
   },
   {
     keywords: ["install", "setup", "installation", "get started", "begin"],
@@ -274,14 +266,14 @@ export default function ChatBot() {
     
     if (lowerQuestion.includes("how") || lowerQuestion.includes("what") || lowerQuestion.includes("where")) {
       return {
-        answer: "I can help you with questions about:\n\n**Event Management**:\n• Creating and managing events\n• Registration management\n• Payment and pricing\n• QR scanning and check-in\n• Event analytics\n• Organizer profile\n\n**Other Features**:\n• Engineering notes\n• AI Assistant\n• Installation and setup\n\nTry asking a specific question like:\n• \"How do I create an event?\"\n• \"What is payment pricing?\"\n• \"How to manage registrations?\"\n\nOr use one of the quick questions below!",
+        answer: "I can help you with questions about:\n\n**Event Management**:\n• Creating and managing events\n• Registration management\n• Payment and pricing\n• QR scanning and check-in\n• Event analytics\n• Organizer profile\n\n**Developers**:\n• REST API and API keys\n• SDKs for seven languages\n• Webhooks\n\nTry asking a specific question like:\n• \"How do I create an event?\"\n• \"What is payment pricing?\"\n• \"How to manage registrations?\"\n\nOr use one of the quick questions below!",
         relatedTopics: ["create event", "payment", "registration", "analytics"],
       };
     }
     
     // Generic helpful response
     return {
-      answer: "I can help you with questions about Vihaya documentation. Here are some topics I can assist with:\n\n**Event Management**:\n• Creating events and organizer profile\n• Registration management and form fields\n• Payment & pricing (Razorpay)\n• QR scanning and check-in\n• Event analytics and reports\n• Child events and sub-events\n• In-event features\n• Post-event management\n\n**Other Features**:\n• Engineering notes (markdown, code blocks)\n• AI Assistant (study help, commands)\n• Installation and quick start\n\nTry asking about a specific feature, or use one of the quick questions below!",
+      answer: "I can help you with questions about Vihaya documentation. Here are some topics I can assist with:\n\n**Event Management**:\n• Creating events and organizer profile\n• Registration management and form fields\n• Payment & pricing (Razorpay)\n• QR scanning and check-in\n• Event analytics and reports\n• Child events and sub-events\n• In-event features\n• Post-event management\n\n**Developers**:\n• REST API, keys and authentication\n• Taking payment from your own front end\n• SDKs for seven languages\n• Webhooks\n\nTry asking about a specific feature, or use one of the quick questions below!",
       relatedTopics: ["create event", "payment", "registration", "qr scanning", "analytics"],
     };
   };
@@ -501,7 +493,7 @@ export default function ChatBot() {
           {messages.length === 1 && (
             <div className="px-4 pb-2 border-t bg-muted/20">
               <div className="flex items-center gap-2 mb-2 mt-2">
-                <Sparkles className="h-3 w-3 text-primary" />
+                <Bot className="h-3 w-3 text-primary" />
                 <p className="text-xs font-medium text-muted-foreground">
                   Quick questions:
                 </p>

@@ -21,16 +21,12 @@ const navigation: Array<{ name: string; href: string }> = [
   { name: "Event Analytics", href: "/docs/event-management/event-analytics" },
   { name: "Post Event Management", href: "/docs/event-management/post-event" },
   { name: "Child Events", href: "/docs/event-management/child-events" },
-  { name: "Notes Overview", href: "/docs/notes/overview" },
-  { name: "Creating Notes", href: "/docs/notes/creating-notes" },
-  { name: "Organizing Notes", href: "/docs/notes/organizing" },
-  { name: "Markdown Support", href: "/docs/notes/markdown" },
-  { name: "Code Blocks", href: "/docs/notes/code-blocks" },
-  { name: "Search & Filter", href: "/docs/notes/search" },
-  { name: "Sharing Notes", href: "/docs/notes/sharing" },
-  { name: "AI Overview", href: "/docs/ai/overview" },
-  { name: "Getting Started with AI", href: "/docs/ai/getting-started" },
-  { name: "AI Commands", href: "/docs/ai/commands" },
+  { name: "API Reference", href: "/docs/api" },
+  { name: "Authentication", href: "/docs/api/authentication" },
+  { name: "Taking Payment", href: "/docs/api/payments" },
+  { name: "Endpoints", href: "/docs/api/endpoints" },
+  { name: "SDKs", href: "/docs/api/sdks" },
+  { name: "Webhooks", href: "/docs/api/webhooks" },
 ];
 
 export default function DocsFooter() {

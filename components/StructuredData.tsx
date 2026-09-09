@@ -6,7 +6,7 @@ export default function StructuredData() {
     "@type": "WebSite",
     "name": "Vihaya Documentation",
     "url": baseUrl,
-    "description": "Comprehensive documentation for Vihaya - The ultimate engineering notes app, AI study assistant, and project/event management platform.",
+    "description": "Documentation for Vihaya Events — create events, manage registrations and check-in, and build on the REST API.",
     "publisher": {
       "@type": "Organization",
       "name": "Vihaya",
@@ -32,7 +32,7 @@ export default function StructuredData() {
     "name": "Vihaya",
     "url": "https://vihaya.app",
     "logo": `${baseUrl}/images/logo_only.png`,
-    "description": "Vihaya - The ultimate engineering notes app, AI study assistant, and project/event management platform.",
+    "description": "Vihaya - the event ticketing platform.",
     "sameAs": [
       "https://github.com/Vishnu252005/vihaya-docs",
     ],

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Sparkles, Code2, X } from "lucide-react";
+import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Rocket, Code2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
@@ -64,31 +64,18 @@ const navigation: NavigationItem[] = [
       
       // After Event
       { name: "Post Event Management", href: "/docs/event-management/post-event" },
+      { name: "AI Event Creation", href: "/docs/event-management/ai-event-creation" },
     ],
   },
   {
-    name: "Engineering Notes",
+    name: "API Reference",
     children: [
-      { name: "Notes Overview", href: "/docs/notes/overview" },
-      { name: "Creating Notes", href: "/docs/notes/creating-notes" },
-      { name: "Organizing Notes", href: "/docs/notes/organizing" },
-      { name: "Markdown Support", href: "/docs/notes/markdown" },
-      { name: "Code Blocks", href: "/docs/notes/code-blocks" },
-      { name: "Search & Filter", href: "/docs/notes/search" },
-      { name: "Sharing Notes", href: "/docs/notes/sharing" },
-    ],
-  },
-  {
-    name: "AI Assistant",
-    children: [
-      { name: "AI Overview", href: "/docs/ai/overview" },
-      { name: "Getting Started with AI", href: "/docs/ai/getting-started" },
-      { name: "AI Event Creation", href: "/docs/ai/event-creation" },
-      { name: "Resume Optimization", href: "/docs/ai/resume-optimization" },
-      { name: "Screenshot & Image Analysis", href: "/docs/ai/screenshot-tool" },
-      { name: "PDF Document Analysis", href: "/docs/ai/pdf-analysis" },
-      { name: "Voice Assistant", href: "/docs/ai/voice-assistant" },
-      { name: "AI Commands", href: "/docs/ai/commands" },
+      { name: "Overview", href: "/docs/api" },
+      { name: "Authentication", href: "/docs/api/authentication" },
+      { name: "Taking Payment", href: "/docs/api/payments" },
+      { name: "Endpoints", href: "/docs/api/endpoints" },
+      { name: "SDKs", href: "/docs/api/sdks" },
+      { name: "Webhooks", href: "/docs/api/webhooks" },
     ],
   },
 ];
@@ -236,10 +223,10 @@ export default function DocsSidebar() {
                       )}
                     >
                       <div className="flex items-center gap-2.5">
-                        {section.name === "Get Started" && <Sparkles className="h-4 w-4 text-primary" />}
+                        {section.name === "Get Started" && <Rocket className="h-4 w-4 text-primary" />}
                         {section.name === "Event Management" && <Calendar className="h-4 w-4 text-primary" />}
-                        {section.name === "Engineering Notes" && <BookOpen className="h-4 w-4 text-primary" />}
-                        {section.name === "AI Assistant" && <Sparkles className="h-4 w-4 text-primary" />}
+                        
+                        {section.name === "API Reference" && <Code2 className="h-4 w-4 text-primary" />}
                         <span>{section.name}</span>
                       </div>
                       <ChevronRight
@@ -337,7 +324,7 @@ export default function DocsSidebar() {
                             if (name.includes("Form") || name.includes("Fields")) return <FileText className="h-3.5 w-3.5" />;
                             if (name.includes("In-Event") || name.includes("During")) return <Calendar className="h-3.5 w-3.5" />;
                             if (name.includes("Notes")) return <BookOpen className="h-3.5 w-3.5" />;
-                            if (name.includes("AI")) return <Sparkles className="h-3.5 w-3.5" />;
+                            if (name.includes("API") || name.includes("SDK")) return <Code2 className="h-3.5 w-3.5" />;
                             if (name.includes("Code") || name.includes("Markdown")) return <Code2 className="h-3.5 w-3.5" />;
                             return null;
                           };

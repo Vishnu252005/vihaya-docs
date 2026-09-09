@@ -23,7 +23,6 @@ export default function Breadcrumb() {
       'installation': 'Installation',
       'quick-start': 'Quick Start',
       'features': 'Features',
-      'notes': 'Engineering Notes',
       'ai-assistant': 'AI Assistant',
       'projects': 'Project Management',
       'events': 'Event Management',
