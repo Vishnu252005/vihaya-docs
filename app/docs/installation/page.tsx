@@ -26,7 +26,7 @@ export default function InstallationPage() {
             <div className="flex-shrink-0">
               <Image
                 src="/images/logos/logo_dark.png"
-                alt="Vihaya App Icon"
+                alt="Vihaya Events"
                 width={120}
                 height={120}
                 className="rounded-2xl shadow-lg"

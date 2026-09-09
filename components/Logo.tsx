@@ -9,14 +9,14 @@ export function Logo() {
       <div className="relative h-8 w-8 flex-shrink-0">
         <Image
           src="/images/logos/logo_only.png"
-          alt="Vihaya Logo"
+          alt="Vihaya Events"
           width={32}
           height={32}
           className="object-contain transition-opacity group-hover:opacity-80"
           priority
         />
       </div>
-      <span className="font-bold text-sm">Vihaya</span>
+      <span className="font-bold text-sm">Vihaya Events</span>
     </Link>
   );
 }
