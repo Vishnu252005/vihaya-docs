@@ -13,7 +13,7 @@ export default function StructuredData() {
       "url": "https://vihaya.app",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/images/logos/vihaya-events-logo.png`,
+        "url": `${baseUrl}/images/logos/vihaya-events-mark.png`,
       },
     },
     "potentialAction": {
@@ -31,7 +31,7 @@ export default function StructuredData() {
     "@type": "Organization",
     "name": "Vihaya",
     "url": "https://vihaya.app",
-    "logo": `${baseUrl}/images/logos/vihaya-events-logo.png`,
+    "logo": `${baseUrl}/images/logos/vihaya-events-mark.png`,
     "description": "Vihaya - the event ticketing platform.",
     "sameAs": [
       "https://github.com/Vishnu252005/vihaya-docs",
