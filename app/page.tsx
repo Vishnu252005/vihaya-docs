@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calendar, Code2, QrCode, Rocket } from "lucide-react";
+import { ArrowRight, Calendar, Code2, QrCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Logo } from "@/components/Logo";
