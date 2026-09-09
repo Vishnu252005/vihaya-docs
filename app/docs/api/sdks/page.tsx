@@ -47,9 +47,26 @@ export default function SdksPage() {
 
         {SDKS.map(sdk => (
           <div key={sdk.pkg}>
-            <h2 id={sdk.lang.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="text-2xl font-semibold mb-4">
-              {sdk.lang}
-            </h2>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <h2 id={sdk.lang.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="text-2xl font-semibold">
+                {sdk.lang}
+              </h2>
+              {/* ⚠️ Only the four that were installed from their registry and
+                  driven against production carry this. Badging the other three
+                  would be the unverified assertion this rewrite exists to
+                  remove — they are published and follow the same shape, but
+                  three of the four tested were broken, so "same shape" is not
+                  evidence. */}
+              {SDK_VERIFIED.includes(sdk.lang) ? (
+                <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-accent-ink">
+                  Verified against the live API
+                </span>
+              ) : (
+                <span className="rounded-full border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                  Published, not yet driven end to end
+                </span>
+              )}
+            </div>
             <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border bg-card px-4 py-3">
               <code className="font-mono text-[13px] text-accent-ink">{sdk.install}</code>
               <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
