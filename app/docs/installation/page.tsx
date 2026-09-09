@@ -25,7 +25,7 @@ export default function InstallationPage() {
           <div className="flex flex-col sm:flex-row gap-6 items-start mb-6">
             <div className="flex-shrink-0">
               <Image
-                src="/images/logos/logo_dark.png"
+                src="/images/logos/vihaya-events-logo-lg.png"
                 alt="Vihaya Events"
                 width={120}
                 height={120}

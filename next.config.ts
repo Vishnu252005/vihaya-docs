@@ -48,11 +48,29 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // ⚠️ NOT `immutable`, AND THAT IS A CORRECTION.
+        //
+        // These are EDITORIAL assets on STABLE paths — /images/logos/logo_only.png
+        // is the same URL whatever it contains, unlike Next's content-hashed
+        // /_next/static/* files. Serving them `max-age=31536000, immutable` told
+        // every browser and the CDN to never revalidate for a YEAR, so replacing
+        // the file changed nothing for anyone who had already loaded the site.
+        // Caught replacing the study-app logo with the Events one: the deploy
+        // landed, a cache-busted URL returned the new mark, and the plain URL
+        // still served the old graduation cap with `age: 5680`.
+        //
+        // The same trap is recorded against /_next/image in the events repo,
+        // where `immutable` pinned replaced event posters for a year.
+        //
+        // An hour of caching with a day of stale-while-revalidate keeps these
+        // effectively free to serve while letting a replacement actually reach
+        // people. If an asset genuinely never changes, give it a content-hashed
+        // FILENAME — that is what `immutable` is for.
         source: '/images/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
           },
         ],
       },
