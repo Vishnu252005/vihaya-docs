@@ -8,7 +8,7 @@ export function Logo() {
     <Link href="/" className="flex items-center gap-2 group">
       <div className="relative h-8 w-8 flex-shrink-0">
         <Image
-          src="/images/logos/logo_only.png"
+          src="/images/logos/vihaya-events-logo.png"
           alt="Vihaya Events"
           width={32}
           height={32}
