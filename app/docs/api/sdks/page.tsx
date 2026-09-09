@@ -1,6 +1,6 @@
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import type { Metadata } from "next";
-import { SDKS, SDK_COVERAGE } from "@/lib/api-spec";
+import { SDKS, SDK_COVERAGE, SDK_VERIFIED } from "@/lib/api-spec";
 import { Code } from "@/components/ApiBits";
 
 export const metadata: Metadata = genMeta({

@@ -122,6 +122,20 @@ export const SDKS = [
       snippet: `import 'package:vihaya_sdk_flutter/vihaya_sdk_flutter.dart';\n\nfinal vihaya = Vihaya(apiKey: const String.fromEnvironment('VIHAYA_API_KEY'));\n\nfinal events = await vihaya.events.list();\nfinal result = await vihaya.events.register(eventId, RegisterData(\n  name: 'Asha Menon',\n  email: 'asha@example.com',\n));` },
 ];
 
+/**
+ * ⚠️ VERIFIED BY INSTALLING EACH PACKAGE FROM ITS REGISTRY AND DRIVING IT
+ * AGAINST THE LIVE API on 2026-09-09 — not by reading the READMEs.
+ *
+ * That run found three of the four testable SDKs could not parse a real event,
+ * because GET/PATCH returned Firestore Timestamps where the spec says strings.
+ * The API was fixed (see serialize-dates.ts in the events repo) rather than
+ * patching six SDKs. All four now list and fetch successfully.
+ *
+ * PHP, Ruby and Java were not driven end to end — they are published and their
+ * models follow the same shape, but do not claim they are verified.
+ */
+export const SDK_VERIFIED = ['JavaScript / TypeScript', 'Python', 'Go', 'Flutter / Dart'];
+
 export const SDK_COVERAGE = {
     covered: [
         { call: 'events.list()', maps: 'GET /api/v1/events' },
