@@ -31,7 +31,7 @@ export function generateMetadata({
       siteName: "Vihaya Events Documentation",
       images: [
         {
-          url: "/images/logo_only.png",
+          url: "/images/logos/vihaya-events-mark.png",
           width: 1200,
           height: 630,
           alt: title,
@@ -44,7 +44,7 @@ export function generateMetadata({
       card: "summary_large_image",
       title: `${title} | Vihaya Events Docs`,
       description,
-      images: ["/images/logo_only.png"],
+      images: ["/images/logos/vihaya-events-mark.png"],
     },
   };
 }
