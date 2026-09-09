@@ -13,7 +13,9 @@ export function generateMetadata({
 }): Metadata {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://docs.vihaya.app";
   const url = `${baseUrl}${path}`;
-  const fullTitle = `${title} | Vihaya Documentation`;
+  // The root layout template already appends the site name — appending it
+  // here too rendered it twice in the browser tab and in every SERP.
+  const fullTitle = title;
 
   return {
     title: fullTitle,
@@ -23,10 +25,10 @@ export function generateMetadata({
       canonical: url,
     },
     openGraph: {
-      title: fullTitle,
+      title: `${title} | Vihaya Events Docs`,
       description,
       url,
-      siteName: "Vihaya Documentation",
+      siteName: "Vihaya Events Documentation",
       images: [
         {
           url: "/images/logo_only.png",
@@ -40,7 +42,7 @@ export function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: `${title} | Vihaya Events Docs`,
       description,
       images: ["/images/logo_only.png"],
     },

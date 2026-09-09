@@ -7,11 +7,11 @@ import ChatBotWrapper from "@/components/ChatBotWrapper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Welcome to Vihaya",
+  title: "Vihaya Events Documentation",
   description: "Documentation for Vihaya Events. Get started with Vihaya today!",
   keywords: ["Vihaya Events", "Event Ticketing", "Event Management", "API Reference", "Registration", "QR Check-in"],
   openGraph: {
-    title: "Welcome to Vihaya",
+    title: "Vihaya Events Documentation",
     description: "Documentation for Vihaya Events.",
     type: "website",
   },
@@ -54,10 +54,11 @@ export default function Home() {
               <span>Your All-in-One Platform</span>
             </div>
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              Welcome to Vihaya
+              Vihaya Events Documentation
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Documentation for Vihaya Events.
+              Publish events, sell tickets, scan people in at the gate — and build all of it
+              into your own product with our REST API and SDKs.
             </p>
           </div>
           
