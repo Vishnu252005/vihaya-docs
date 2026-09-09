@@ -12,14 +12,14 @@ export default function InstallationPage() {
       </h1>
       
       <p className="text-lg text-muted-foreground mb-8 font-normal">
-        Get Vihaya on your device and start managing your events, notes, and projects.
+        Run Vihaya Events in a browser, and use the Android app on event day for gate scanning and check-in.
       </p>
 
       <div className="space-y-6 leading-7">
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Download Vihaya App</h2>
+          <h2 className="text-2xl font-semibold mb-4">Get the Vihaya Events app</h2>
           <p className="mb-4">
-            Install Vihaya on your Android device to access all features on the go.
+            The Android app is what you run ON event day — gate scanning, check-in and live counts.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 items-start mb-6">
@@ -36,11 +36,11 @@ export default function InstallationPage() {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Android App</h3>
                 <p className="mb-4 text-muted-foreground">
-                  Download Vihaya from the Google Play Store or use the direct download link.
+                  Scan tickets at the gate, check attendees in and watch registrations arrive live.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="https://play.google.com/store/apps/details?id=com.vishnumeta.Nexia"
+                    href="https://play.google.com/store/apps/details?id=com.vihaya.events"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
@@ -51,12 +51,12 @@ export default function InstallationPage() {
                     Download from Play Store
                   </a>
                   <a
-                    href="https://vihaya.app/download"
+                    href="https://play.google.com/store/apps/details?id=com.vihaya.events"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 border border-border bg-background hover:bg-accent hover:text-accent-foreground px-6 py-3 rounded-lg transition-colors font-medium"
                   >
-                    Direct Download
+                    Get it on Google Play
                   </a>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default function InstallationPage() {
         </div>
 
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Access Vihaya Web</h2>
+          <h2 className="text-2xl font-semibold mb-4">Use Vihaya Events on the web</h2>
           <p className="mb-4">
             Use Vihaya directly in your web browser - no installation required.
           </p>
@@ -77,17 +77,17 @@ export default function InstallationPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold mb-2">Visit vihaya.app</h3>
+                <h3 className="text-xl font-semibold mb-2">Visit events.vihaya.app</h3>
                 <p className="text-muted-foreground mb-4">
                   Access all Vihaya features through your web browser.
                 </p>
                 <a
-                  href="https://vihaya.app"
+                  href="https://events.vihaya.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
                 >
-                  Open vihaya.app
+                  Open events.vihaya.app
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThumbsUp, ThumbsDown, Pencil, AlertTriangle, ChevronLeft, ChevronRight, Github, Twitter, Linkedin } from "lucide-react";
+import { ThumbsUp, ThumbsDown, Pencil, AlertTriangle, ChevronLeft, ChevronRight, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -134,15 +134,6 @@ export default function DocsFooter() {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t pb-8">
         <div className="flex items-center gap-4">
           <Link
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Twitter"
-          >
-            <Twitter className="h-5 w-5" />
-          </Link>
-          <Link
             href="https://github.com/Vishnu252005/vihaya-docs"
             target="_blank"
             rel="noopener noreferrer"
@@ -151,18 +142,9 @@ export default function DocsFooter() {
           >
             <Github className="h-5 w-5" />
           </Link>
-          <Link
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-5 w-5" />
-          </Link>
         </div>
         <p className="text-sm text-muted-foreground">
-          Powered by <span className="font-semibold text-foreground">Vihaya</span>
+          Powered by <span className="font-semibold text-foreground">Vihaya Events</span>
         </p>
       </div>
     </div>

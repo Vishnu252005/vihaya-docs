@@ -10,7 +10,7 @@ export default function StructuredData() {
     "publisher": {
       "@type": "Organization",
       "name": "Vihaya",
-      "url": "https://vihaya.app",
+      "url": "https://events.vihaya.app",
       "logo": {
         "@type": "ImageObject",
         "url": `${baseUrl}/images/logos/vihaya-events-mark.png`,
@@ -30,7 +30,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Vihaya",
-    "url": "https://vihaya.app",
+    "url": "https://events.vihaya.app",
     "logo": `${baseUrl}/images/logos/vihaya-events-mark.png`,
     "description": "Vihaya - the event ticketing platform.",
     "sameAs": [

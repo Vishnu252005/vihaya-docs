@@ -148,8 +148,8 @@ export default function Header() {
             size="sm"
             className="hidden sm:flex bg-gradient-to-br from-[#0f766e] to-[#115e59] text-white hover:from-[#115e59] hover:to-[#134e4a] shadow-md hover:shadow-lg transition-all duration-200 font-semibold px-3 lg:px-4"
           >
-            <Link href="https://vihaya.app/events" target="_blank" rel="noopener noreferrer">
-              <span className="hidden lg:inline">Vihaya</span>
+            <Link href="https://events.vihaya.app" target="_blank" rel="noopener noreferrer">
+              <span className="hidden lg:inline">Vihaya Events</span>
               <span className="lg:hidden">V</span>
               <span className="ml-1.5 hidden lg:inline">→</span>
             </Link>
