@@ -26,6 +26,16 @@ export default function WebhooksPage() {
             Today there is one: <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px]">registration.confirmed</code>,
             fired the moment a booking is confirmed and its ticket issued.
           </p>
+          <Code filename="registration.confirmed">{`{
+  "type":      "registration.confirmed",
+  "createdAt": "2027-09-01T10:04:11.760Z",
+  "data": {
+    "registrationId": "…",  "eventId":    "…",   "eventTitle": "…",
+    "name":           "…",  "email":      "…",   "phone":      "…",
+    "ticketType":     "…",  "subEventId": "…",   "quantity":   1,
+    "amountPaid":     0,    "currency":   "INR", "paymentStatus": "…"
+  }
+}`}</Code>
         </div>
 
         <div>
@@ -34,19 +44,30 @@ export default function WebhooksPage() {
             We sign the exact bytes we send. Recompute the HMAC over the raw body and compare in
             constant time.
           </p>
-          <Code filename="verify-webhook.js">{`// header:  x-vihaya-signature: <hex>
-// header:  x-vihaya-timestamp: <unix seconds>
+          <Code filename="verify-webhook.js">{`// Headers we send:
+//   X-Vihaya-Signature: sha256=<hex>     <-- note the prefix
+//   X-Vihaya-Timestamp: <unix milliseconds>
+
+const timestamp = req.headers['x-vihaya-timestamp'];
+const header    = req.headers['x-vihaya-signature'];
+
+// The signature is prefixed. Strip it before comparing, or the two buffers
+// are different lengths and timingSafeEqual throws.
+const signature = String(header).replace(/^sha256=/, '');
 
 const expected = crypto
   .createHmac('sha256', WEBHOOK_SECRET)
-  .update(\`\${timestamp}.\${rawBody}\`)
+  .update(\`\${timestamp}.\${rawBody}\`)   // raw body, before JSON.parse
   .digest('hex');
 
-if (!crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature))) {
+if (signature.length !== expected.length ||
+    !crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature))) {
   return res.status(401).end();
 }
+
 // Reject an old timestamp too — that is what makes a captured
-// delivery non-replayable.`}</Code>
+// delivery non-replayable.
+if (Date.now() - Number(timestamp) > 5 * 60 * 1000) return res.status(401).end();`}</Code>
         </div>
 
         <div>
