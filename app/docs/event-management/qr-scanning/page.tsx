@@ -71,22 +71,22 @@ export default function QRScanningPage() {
           </div>
 
           <div className="my-6 grid gap-6 md:grid-cols-2">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/event-ticket-qr.png"
                 alt="Event ticket showing QR code, registration ID, event details, and attendee information"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
             </div>
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/food-coupon-qr.png"
                 alt="Food coupon ticket showing QR code, coupon ID, event details, and redemption instructions"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -160,12 +160,12 @@ export default function QRScanningPage() {
           </div>
 
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/event-check-in-scanning.png"
                 alt="Event check-in QR code scanning interface showing scan QR code prompt"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -219,12 +219,12 @@ export default function QRScanningPage() {
           </div>
 
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/food-coupon-verification-scanning.png"
                 alt="Food coupon verification showing registered user with verified status and food coupon verified status"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />

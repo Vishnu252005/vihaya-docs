@@ -24,12 +24,12 @@ export default function OrganizerProfilePage() {
           </p>
           
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/organizer-profile-view.png"
                 alt="Organizer Profile view showing profile picture, event statistics, social media links, and current events tab"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -206,12 +206,12 @@ export default function OrganizerProfilePage() {
           </div>
 
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/organizer-events-cards.png"
                 alt="Event cards showing event details, tags, and action buttons"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -219,12 +219,12 @@ export default function OrganizerProfilePage() {
           </div>
 
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/event-details.png"
                 alt="Event details page showing event information, action buttons, authorized emails, and analytics"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -232,12 +232,12 @@ export default function OrganizerProfilePage() {
           </div>
 
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/event-sub-events.png"
                 alt="Event page showing sub-events and registered users sections"
-                width={1080}
-                height={1920}
+                width={1088}
+                height={206}
                 className="w-full h-auto"
                 priority
               />
@@ -337,12 +337,12 @@ export default function OrganizerProfilePage() {
           </div>
           
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/authorized-emails-management.png"
                 alt="Event management page showing authorized emails section with creator and authorized email addresses"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />

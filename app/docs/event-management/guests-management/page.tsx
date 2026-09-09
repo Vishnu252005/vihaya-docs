@@ -99,12 +99,12 @@ export default function RegistrationManagementPage() {
           </div>
           
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/registered-users-management.png"
                 alt="Registered Users management screen showing search bar, user registration card with details, and delete option"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -150,12 +150,12 @@ export default function RegistrationManagementPage() {
             Export registration data for external use, accounting, or analysis:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/export-registration-data.png"
                 alt="Download Report modal showing PDF and Excel (CSV) export options"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
