@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function QRScanningPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">
+      <div className="text-accent-ink text-sm font-medium mb-4">
         Event Management
       </div>
       

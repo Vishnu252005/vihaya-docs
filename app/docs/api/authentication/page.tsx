@@ -13,7 +13,7 @@ export const metadata: Metadata = genMeta({
 export default function AuthPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">API Reference</div>
+      <div className="text-accent-ink text-sm font-medium mb-4">API Reference</div>
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">Authentication</h1>
       <p className="text-lg text-muted-foreground mb-8 font-normal leading-relaxed">
         One header, one account. There is no OAuth and no user-delegated flow.

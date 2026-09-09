@@ -15,7 +15,7 @@ export default function DocsHome() {
   return (
     <div className="max-w-none space-y-10">
       {/* Section Heading */}
-      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-accent-ink text-sm font-medium mb-2">
         <span>Get Started</span>
       </div>
       

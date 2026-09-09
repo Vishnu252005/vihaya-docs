@@ -19,7 +19,7 @@ export default async function EndpointsPage() {
 
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">API Reference</div>
+      <div className="text-accent-ink text-sm font-medium mb-4">API Reference</div>
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">Endpoints</h1>
       <p className="text-lg text-muted-foreground mb-8 font-normal leading-relaxed">
         Generated from the live specification, so this page cannot fall behind the running API.

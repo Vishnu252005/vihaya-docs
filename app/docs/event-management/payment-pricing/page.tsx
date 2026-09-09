@@ -4,7 +4,7 @@ import { CreditCard, ShieldCheck, DollarSign, Percent, RefreshCcw, Info, Zap } f
 export default function PaymentPricingPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">Event Management</div>
+      <div className="text-accent-ink text-sm font-medium mb-4">Event Management</div>
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">
         Payment & Pricing
       </h1>

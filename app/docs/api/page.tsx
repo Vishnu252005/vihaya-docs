@@ -15,7 +15,7 @@ export const metadata: Metadata = genMeta({
 export default function ApiIndexPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">API Reference</div>
+      <div className="text-accent-ink text-sm font-medium mb-4">API Reference</div>
 
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">
         Run ticketing from your own product
@@ -35,7 +35,7 @@ export default function ApiIndexPage() {
             ["SDKs", `${SDKS.length} languages`],
           ].map(([k, v]) => (
             <div key={k} className="rounded-xl border bg-card px-4 py-3">
-              <div className="font-mono text-[10px] uppercase tracking-widest text-primary">{k}</div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-accent-ink">{k}</div>
               <div className="mt-1.5 truncate font-mono text-[12.5px]">{v}</div>
             </div>
           ))}
