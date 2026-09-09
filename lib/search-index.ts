@@ -11,10 +11,10 @@ const docsIndex: SearchResult[] = [
   // Get Started
   {
     title: "Introduction to Vihaya",
-    description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance. Learn about Vihaya's core features and get started today.",
+    description: "Documentation for Vihaya Events — publish events, manage registrations and check-in, and build on the REST API.",
     href: "/docs",
     category: "Get Started",
-    keywords: ["Vihaya", "Introduction", "Getting Started", "Event Management", "Engineering Notes", "AI Assistant"],
+    keywords: ["Vihaya Events", "Introduction", "Getting Started", "Event Management", "API Reference", "SDKs"],
   },
   {
     title: "Quick Start",
@@ -116,101 +116,6 @@ const docsIndex: SearchResult[] = [
     category: "Event Management",
     keywords: ["organizer", "profile", "branding", "settings"],
   },
-  
-  // Engineering Notes
-  {
-    title: "Notes Overview",
-    description: "Overview of engineering notes features including markdown support, code blocks, and organization tools.",
-    href: "/docs/notes/overview",
-    category: "Engineering Notes",
-    keywords: ["notes", "overview", "note-taking", "engineering notes"],
-  },
-  {
-    title: "Creating Notes",
-    description: "Learn how to create and format notes with markdown, headings, and rich text.",
-    href: "/docs/notes/creating-notes",
-    category: "Engineering Notes",
-    keywords: ["create notes", "note creation", "writing notes", "formatting"],
-  },
-  {
-    title: "Markdown",
-    description: "Use markdown syntax to format your notes with headings, lists, links, and more.",
-    href: "/docs/notes/markdown",
-    category: "Engineering Notes",
-    keywords: ["markdown", "formatting", "syntax", "text formatting"],
-  },
-  {
-    title: "Code Blocks",
-    description: "Add code blocks with syntax highlighting to your notes for programming examples.",
-    href: "/docs/notes/code-blocks",
-    category: "Engineering Notes",
-    keywords: ["code blocks", "syntax highlighting", "programming", "code"],
-  },
-  {
-    title: "Organizing Notes",
-    description: "Organize your notes with folders, tags, and categories for easy navigation.",
-    href: "/docs/notes/organizing",
-    category: "Engineering Notes",
-    keywords: ["organize", "folders", "tags", "categories", "organization"],
-  },
-  {
-    title: "Search",
-    description: "Search through your notes quickly and efficiently to find what you need.",
-    href: "/docs/notes/search",
-    category: "Engineering Notes",
-    keywords: ["search", "find", "search notes", "note search"],
-  },
-  {
-    title: "Sharing Notes",
-    description: "Share your notes with others through links, permissions, and collaboration features.",
-    href: "/docs/notes/sharing",
-    category: "Engineering Notes",
-    keywords: ["sharing", "share notes", "collaboration", "permissions"],
-  },
-  
-  // AI Assistant
-  {
-    title: "AI Assistant Overview",
-    description: "Overview of Vihaya's AI Assistant features for study assistance and note enhancement.",
-    href: "/docs/ai/overview",
-    category: "AI Assistant",
-    keywords: ["AI", "assistant", "overview", "artificial intelligence"],
-  },
-  {
-    title: "Getting Started with AI",
-    description: "Start using Vihaya's AI Assistant to enhance your learning experience. Learn how to access and interact with the AI.",
-    href: "/docs/ai/getting-started",
-    category: "AI Assistant",
-    keywords: ["AI getting started", "AI tutorial", "AI assistant", "learn AI"],
-  },
-  {
-    title: "AI Commands",
-    description: "Learn about available AI commands and how to use them effectively.",
-    href: "/docs/ai/commands",
-    category: "AI Assistant",
-    keywords: ["AI commands", "commands", "AI usage", "AI features"],
-  },
-  {
-    title: "Note Enhancement",
-    description: "Use AI to enhance, improve, and expand your notes with additional information and insights.",
-    href: "/docs/ai/note-enhancement",
-    category: "AI Assistant",
-    keywords: ["note enhancement", "enhance notes", "AI notes", "improve notes"],
-  },
-  {
-    title: "Study Assistance",
-    description: "Get AI-powered study assistance including explanations, summaries, and learning support.",
-    href: "/docs/ai/study-assistance",
-    category: "AI Assistant",
-    keywords: ["study assistance", "learning", "study help", "AI study"],
-  },
-  {
-    title: "Q&A",
-    description: "Frequently asked questions about the AI Assistant and common use cases.",
-    href: "/docs/ai/qa",
-    category: "AI Assistant",
-    keywords: ["FAQ", "questions", "answers", "AI Q&A", "help"],
-  },
 ];
 
 /**
@@ -220,7 +125,51 @@ const docsIndex: SearchResult[] = [
  */
 export function searchDocs(query: string): SearchResult[] {
   if (!query || query.trim().length === 0) {
-    return [];
+    return [
+  // API Reference
+  {
+    title: "API Reference",
+    description: "Build on Vihaya Events. REST API for events, registrations and payments from your own front end.",
+    href: "/docs/api",
+    category: "API Reference",
+    keywords: ["api", "rest", "developer", "integration", "headless"],
+  },
+  {
+    title: "Authentication",
+    description: "How API keys work — scoping, origin pinning, revocation and the publish gate.",
+    href: "/docs/api/authentication",
+    category: "API Reference",
+    keywords: ["api key", "x-api-key", "authentication", "security"],
+  },
+  {
+    title: "Taking Payment",
+    description: "The two-call headless flow, the Razorpay handoff, and where the money settles.",
+    href: "/docs/api/payments",
+    category: "API Reference",
+    keywords: ["payment", "razorpay", "checkout", "headless", "settlement"],
+  },
+  {
+    title: "Endpoints",
+    description: "Every endpoint, generated from the live OpenAPI specification.",
+    href: "/docs/api/endpoints",
+    category: "API Reference",
+    keywords: ["endpoints", "openapi", "reference", "routes"],
+  },
+  {
+    title: "SDKs",
+    description: "Official libraries for JavaScript, Python, PHP, Ruby, Go, Java and Flutter.",
+    href: "/docs/api/sdks",
+    category: "API Reference",
+    keywords: ["sdk", "npm", "pip", "composer", "gem", "library"],
+  },
+  {
+    title: "Webhooks",
+    description: "Signed callbacks when a registration is confirmed, and how to verify them.",
+    href: "/docs/api/webhooks",
+    category: "API Reference",
+    keywords: ["webhook", "hmac", "signature", "callback", "sync"],
+  },
+];
   }
 
   const normalizedQuery = query.toLowerCase().trim();

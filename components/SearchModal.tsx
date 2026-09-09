@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Search, X, FileText, Calendar, BookOpen, Sparkles, ArrowRight } from "lucide-react";
+import { Search, X, FileText, Calendar, Code2, Rocket, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { searchDocs, type SearchResult } from "@/lib/search-index";
@@ -13,10 +13,10 @@ interface SearchModalProps {
 }
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "Get Started": <Sparkles className="h-4 w-4" />,
+  "Get Started": <Rocket className="h-4 w-4" />,
   "Event Management": <Calendar className="h-4 w-4" />,
-  "Engineering Notes": <BookOpen className="h-4 w-4" />,
-  "AI Assistant": <Sparkles className="h-4 w-4" />,
+  
+  "API Reference": <Code2 className="h-4 w-4" />,
 };
 
 export function SearchModal({ isOpen, onClose }: SearchModalProps) {

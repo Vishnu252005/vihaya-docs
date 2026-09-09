@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Calendar, BookOpen, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Calendar, Code2, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = genMeta({
   title: "Introduction to Vihaya",
-  description: "Your all-in-one platform for event management, engineering notes, and AI-powered study assistance. Learn about Vihaya's core features and get started today.",
+  description: "Documentation for Vihaya Events. Learn about Vihaya's core features and get started today.",
   path: "/docs",
-  keywords: ["Vihaya", "Introduction", "Getting Started", "Event Management", "Engineering Notes", "AI Assistant"],
+  keywords: ["Vihaya Events", "Introduction", "Getting Started", "Event Management", "API Reference", "SDKs"],
 });
 
 export default function DocsHome() {
@@ -25,7 +25,7 @@ export default function DocsHome() {
           Introduction to Vihaya
         </h1>
         <p className="text-xl text-muted-foreground font-normal leading-relaxed">
-          Your all-in-one platform for event management, engineering notes, and AI-powered study assistance.
+          Documentation for Vihaya Events.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default function DocsHome() {
       <div className="space-y-8 leading-7 text-base">
         <p className="text-lg text-muted-foreground leading-relaxed">
           Vihaya simplifies your academic and professional life with three powerful features: 
-          seamless event management, comprehensive engineering notes, and intelligent AI assistance.
+          seamless event management, gate check-in, and a REST API you can build your own front end on.
         </p>
 
         <div className="my-12" id="why-choose-vihaya">
@@ -57,10 +57,10 @@ export default function DocsHome() {
 
             <div className="group flex items-start gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 hover:border-primary/50">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 group-hover:scale-110 transition-transform flex-shrink-0">
-                <BookOpen className="h-6 w-6 text-primary" />
+                <Code2 className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold mb-2 text-lg">Engineering Notes</h3>
+                <h3 className="font-semibold mb-2 text-lg">API &amp; SDKs</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Organize your notes with markdown, code blocks, and powerful search. Never lose important information.
                 </p>
@@ -69,7 +69,7 @@ export default function DocsHome() {
 
             <div className="group flex items-start gap-4 p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 hover:border-primary/50">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 group-hover:scale-110 transition-transform flex-shrink-0">
-                <Sparkles className="h-6 w-6 text-primary" />
+                <Code2 className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <h3 className="font-semibold mb-2 text-lg">AI Assistant</h3>
@@ -131,12 +131,12 @@ export default function DocsHome() {
             </div>
 
             <div className="p-6 rounded-xl border bg-card hover:shadow-lg transition-all duration-300 hover:border-primary/50">
-              <h3 className="font-semibold mb-3 text-lg">Engineering Notes</h3>
+              <h3 className="font-semibold mb-3 text-lg">API &amp; SDKs</h3>
               <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                 Powerful note-taking with markdown, code syntax highlighting, and organization tools.
               </p>
               <Button asChild variant="outline" size="sm" className="w-full">
-                <Link href="/docs/notes/overview">
+                <Link href="/docs/api">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -148,7 +148,7 @@ export default function DocsHome() {
                 Intelligent study companion that helps you learn, understand, and excel.
               </p>
               <Button asChild variant="outline" size="sm" className="w-full">
-                <Link href="/docs/ai/overview">
+                <Link href="/docs/api/sdks">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

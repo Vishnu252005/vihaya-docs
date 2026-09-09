@@ -5,7 +5,7 @@ import Image from "next/image";
 export const metadata: Metadata = genMeta({
   title: "AI-Powered Event Creation",
   description: "Learn how to create events using natural language with Vihaya's AI Assistant. Auto-fill event details, manage permissions, and create events instantly.",
-  path: "/docs/ai/event-creation",
+  path: "/docs/event-management/ai-event-creation",
   keywords: ["AI event creation", "natural language events", "event management", "AI assistant", "auto-fill events"],
 });
 

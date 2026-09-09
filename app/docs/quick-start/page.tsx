@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calendar, BookOpen, Sparkles, CheckCircle2, Zap, Users, FileText, MessageSquare, Image as ImageIcon, Mic } from "lucide-react";
+import { ArrowRight, Calendar, BookOpen, Rocket, CheckCircle2, Zap, Users, FileText, MessageSquare, Image as ImageIcon, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generateMetadata as genMeta } from "@/lib/metadata";
 import type { Metadata } from "next";
@@ -31,7 +31,7 @@ export default function QuickStartPage() {
         <div className="p-6 rounded-xl border bg-gradient-to-br from-primary/10 via-primary/5 to-transparent">
           <h2 className="text-2xl font-semibold mb-4">What is Vihaya?</h2>
           <p className="mb-4 text-muted-foreground">
-            Vihaya is your all-in-one platform combining <strong>Event Management</strong>, <strong>Engineering Notes</strong>, and <strong>AI Assistant</strong> in one powerful application.
+            Vihaya Events is an event ticketing platform: publish events, sell tickets, scan people in at the gate, and build on the same API we use ourselves.
           </p>
           <div className="grid gap-4 md:grid-cols-3 mt-6">
             <div className="flex items-center gap-3 p-4 rounded-lg bg-card border">
@@ -49,7 +49,7 @@ export default function QuickStartPage() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-4 rounded-lg bg-card border">
-              <Sparkles className="h-5 w-5 text-primary flex-shrink-0" />
+              <Rocket className="h-5 w-5 text-primary flex-shrink-0" />
               <div>
                 <div className="font-semibold text-sm">AI Assistant</div>
                 <div className="text-xs text-muted-foreground">Learn & enhance</div>
@@ -149,7 +149,7 @@ export default function QuickStartPage() {
             </ol>
             <div className="mt-4 p-4 rounded-lg border bg-primary/5">
               <p className="text-sm">
-                <strong>💡 Pro Tip:</strong> You can also use <Link href="/docs/ai/event-creation" className="text-primary hover:underline">AI to create events</Link> by simply describing your event in natural language!
+                <strong>💡 Pro Tip:</strong> You can also use <Link href="/docs/event-management/ai-event-creation" className="text-primary hover:underline">AI to create events</Link> by simply describing your event in natural language!
               </p>
             </div>
           </div>
@@ -266,7 +266,7 @@ export default function QuickStartPage() {
             </div>
             <div className="mt-4 p-4 rounded-lg border bg-primary/5">
               <p className="text-sm">
-                <strong>💡 Pro Tip:</strong> Check out <Link href="/docs/ai/commands" className="text-primary hover:underline">AI Commands</Link> for a complete list of what you can do with AI!
+                <strong>💡 Pro Tip:</strong> Check out <Link href="/docs/api" className="text-primary hover:underline">the API Reference</Link> if you would rather drive all of this from your own code.
               </p>
             </div>
           </div>
@@ -314,8 +314,8 @@ export default function QuickStartPage() {
             </div>
             <div className="p-4 rounded-lg border bg-card hover:shadow-md transition-shadow">
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <h3 className="font-semibold text-sm">Resume Optimization</h3>
+                <Rocket className="h-4 w-4 text-primary" />
+                <h3 className="font-semibold text-sm">Registration Forms</h3>
               </div>
               <p className="text-xs text-muted-foreground">
                 Optimize your resume for specific job roles using AI.
@@ -349,16 +349,16 @@ export default function QuickStartPage() {
               </Link>
             </Button>
             <Button asChild variant="outline" className="h-auto py-4 flex-col items-start">
-              <Link href="/docs/notes/overview">
+              <Link href="/docs/api">
                 <BookOpen className="h-5 w-5 mb-2 text-primary" />
-                <span className="font-semibold">Engineering Notes</span>
+                <span className="font-semibold">API &amp; SDKs</span>
                 <span className="text-xs text-muted-foreground mt-1">Note-taking guide</span>
                 <ArrowRight className="h-4 w-4 mt-2 self-end" />
               </Link>
             </Button>
             <Button asChild variant="outline" className="h-auto py-4 flex-col items-start">
-              <Link href="/docs/ai/overview">
-                <Sparkles className="h-5 w-5 mb-2 text-primary" />
+              <Link href="/docs/api/sdks">
+                <Rocket className="h-5 w-5 mb-2 text-primary" />
                 <span className="font-semibold">AI Assistant</span>
                 <span className="text-xs text-muted-foreground mt-1">AI features guide</span>
                 <ArrowRight className="h-4 w-4 mt-2 self-end" />
@@ -385,7 +385,7 @@ export default function QuickStartPage() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="sm">
-              <Link href="/docs/ai/getting-started">
+              <Link href="/docs/api">
                 AI Getting Started
               </Link>
             </Button>

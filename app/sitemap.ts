@@ -5,7 +5,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   const routes = [
     '',
-    '/download',
     '/docs',
     '/docs/installation',
     '/docs/quick-start',
@@ -21,16 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/docs/event-management/in-event',
     '/docs/event-management/event-analytics',
     '/docs/event-management/post-event',
-    '/docs/notes/overview',
-    '/docs/notes/creating-notes',
-    '/docs/notes/organizing',
-    '/docs/notes/markdown',
-    '/docs/notes/code-blocks',
-    '/docs/notes/search',
-    '/docs/notes/sharing',
-    '/docs/ai/overview',
-    '/docs/ai/getting-started',
-    '/docs/ai/commands',
+    '/docs/event-management/ai-event-creation',
+    '/docs/api',
+    '/docs/api/authentication',
+    '/docs/api/payments',
+    '/docs/api/endpoints',
+    '/docs/api/sdks',
+    '/docs/api/webhooks',
   ]
 
   return routes.map((route) => ({
