@@ -46,7 +46,7 @@ export default function SdksPage() {
         </div>
 
         {SDKS.map(sdk => (
-          <div key={sdk.pkg}>
+          <div key={sdk.lang}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <h2 id={sdk.lang.toLowerCase().replace(/[^a-z0-9]+/g, "-")} className="text-2xl font-semibold">
                 {sdk.lang}

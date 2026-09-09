@@ -1,382 +1,172 @@
 "use client";
 
+/**
+ * The documentation nav.
+ *
+ * ⚠️ IT RENDERS `lib/docs-registry.ts` AND HOLDS NO PAGE LIST OF ITS OWN. The
+ * previous version carried a hand-written copy of the tree, which is how a page
+ * could exist and never appear in the nav — and how the nav and /llms.txt could
+ * disagree about what the site contains. Add a page to the registry, not here.
+ */
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { ChevronRight, FileText, Rss, BookOpen, Calendar, Settings, Users, QrCode, BarChart3, Archive, Layers, Rocket, Code2, X } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { ChevronRight, X, Rocket, Calendar, Code2, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { DOC_PAGES, GROUP_ORDER, SECTION_ORDER, type DocPage } from "@/lib/docs-registry";
 
-type NavigationChild = 
-  | { name: string; href: string }
-  | { name: string; children: Array<{ name: string; href: string }> };
+const GROUP_ICON: Record<string, LucideIcon> = {
+  "Get Started": Rocket,
+  "Event Management": Calendar,
+  "API Reference": Code2,
+};
 
-type NavigationItem = 
-  | {
-      name: string;
-      children: NavigationChild[];
-    }
-  | {
-      name: string;
-      href: string;
-    };
-
-const navigation: NavigationItem[] = [
-  {
-    name: "Get Started",
-    children: [
-      { name: "Introduction to Vihaya", href: "/docs" },
-      { name: "Installation", href: "/docs/installation" },
-      { name: "Quick Start", href: "/docs/quick-start" },
-    ],
-  },
-  {
-    name: "Event Management",
-    children: [
-      // Getting Started
-      { name: "Event Overview", href: "/docs/event-overview" },
-      { name: "Organizer Profile", href: "/docs/event-management/organizer-profile" },
-      { name: "Creating Events", href: "/docs/event-management/creating-events" },
-      
-      // Configuration
-      {
-        name: "Event Configuration",
-        children: [
-          { name: "Edit Event Settings", href: "/docs/event-management/event-settings" },
-          { name: "Payment & Pricing", href: "/docs/event-management/payment-pricing" },
-          { name: "Registration Form Fields", href: "/docs/event-management/form-builder" },
-        ],
-      },
-      
-      // Advanced Setup
-      { name: "Child Events", href: "/docs/event-management/child-events" },
-      
-      // Management
-      { name: "Registration Management", href: "/docs/event-management/guests-management" },
-      
-      // During Event
-      { name: "QR Scanning and Check-In", href: "/docs/event-management/qr-scanning" },
-      { name: "In-Event Features", href: "/docs/event-management/in-event" },
-      
-      // Analytics & Reports
-      { name: "Event Analytics", href: "/docs/event-management/event-analytics" },
-      
-      // After Event
-      { name: "Post Event Management", href: "/docs/event-management/post-event" },
-      { name: "AI Event Creation", href: "/docs/event-management/ai-event-creation" },
-    ],
-  },
-  {
-    name: "API Reference",
-    children: [
-      { name: "Overview", href: "/docs/api" },
-      { name: "Authentication", href: "/docs/api/authentication" },
-      { name: "Taking Payment", href: "/docs/api/payments" },
-      { name: "Endpoints", href: "/docs/api/endpoints" },
-      { name: "SDKs", href: "/docs/api/sdks" },
-      { name: "Webhooks", href: "/docs/api/webhooks" },
-    ],
-  },
-];
-
-function hasChildren(item: NavigationItem): item is { name: string; children: NavigationChild[] } {
-  return 'children' in item;
-}
-
-function hasNestedChildren(item: NavigationChild): item is { name: string; children: Array<{ name: string; href: string }> } {
-  return 'children' in item;
+function NavLink({ page, active, onNavigate }: { page: DocPage; active: boolean; onNavigate: () => void }) {
+  const Icon = page.icon;
+  return (
+    <Link
+      href={page.href}
+      prefetch
+      onClick={onNavigate}
+      aria-current={active ? "page" : undefined}
+      className={cn(
+        "group relative flex items-center gap-2.5 rounded-lg py-1.5 pl-3 pr-2 text-[13.5px] transition-colors",
+        active
+          ? "bg-primary/[0.09] font-medium text-primary"
+          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+      )}
+    >
+      {/* The active rail sits on the group's left border, not inside the row. */}
+      {active && <span aria-hidden className="absolute -left-[13px] top-1/2 h-4 w-[2px] -translate-y-1/2 rounded-full bg-primary" />}
+      {Icon && <Icon className={cn("h-3.5 w-3.5 shrink-0", active ? "text-primary" : "text-muted-foreground/70")} />}
+      <span className="min-w-0 flex-1 truncate">{page.title}</span>
+      {page.badge && (
+        <span className="shrink-0 rounded-full border border-primary/30 bg-primary/10 px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wide text-primary">
+          {page.badge}
+        </span>
+      )}
+    </Link>
+  );
 }
 
 export default function DocsSidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openSections, setOpenSections] = useState<string[]>(() => {
-    const sections: string[] = [];
-    navigation.forEach((section) => {
-      if (hasChildren(section)) {
-        // Check if any child matches or if any nested child matches
-        const hasMatch = section.children.some((child) => {
-          if (hasNestedChildren(child)) {
-            const nestedMatch = child.children.some((nestedChild) => nestedChild.href === pathname);
-            if (nestedMatch) {
-              sections.push(`${section.name}-${child.name}`);
-            }
-            return nestedMatch;
-          }
-          return child.href === pathname;
-        });
-        if (hasMatch) {
-          sections.push(section.name);
-        }
-      }
+
+  /** Group → (section → pages), built once from the registry. */
+  const tree = useMemo(() => {
+    return GROUP_ORDER.map(group => {
+      const pages = DOC_PAGES.filter(p => p.group === group);
+      const order = SECTION_ORDER[group];
+      const sections = order
+        ? order.map(name => ({ name, pages: pages.filter(p => p.section === name) })).filter(s => s.pages.length)
+        : [{ name: null as string | null, pages }];
+      return { group, sections };
     });
-    return sections.length > 0 ? sections : ["Get Started"];
-  });
+  }, []);
 
-  // Listen for menu toggle from Header
+  /**
+   * Which group the reader is in right now. Derived, never stored — storing it
+   * meant an effect that pushed the group into state on every navigation, and
+   * groups then accumulated open forever because nothing ever removed them.
+   */
+  const currentGroup = DOC_PAGES.find(p => p.href === pathname)?.group ?? GROUP_ORDER[0];
+
+  /**
+   * Only the reader's EXPLICIT choices. A group with no entry here follows the
+   * page: open when you are inside it, closed when you are not.
+   */
+  const [overrides, setOverrides] = useState<Record<string, boolean>>({});
+  const isOpen = (g: string) => overrides[g] ?? g === currentGroup;
+
   useEffect(() => {
-    const handleToggle = (e: CustomEvent) => {
-      setIsMobileMenuOpen(e.detail.isOpen);
-    };
-    
-    const handleClose = () => {
-      setIsMobileMenuOpen(false);
-    };
-
-    window.addEventListener('toggleMobileMenu', handleToggle as EventListener);
-    window.addEventListener('closeMobileMenu', handleClose);
+    const onToggle = (e: Event) => setIsMobileMenuOpen((e as CustomEvent).detail.isOpen);
+    const onClose = () => setIsMobileMenuOpen(false);
+    window.addEventListener("toggleMobileMenu", onToggle);
+    window.addEventListener("closeMobileMenu", onClose);
     return () => {
-      window.removeEventListener('toggleMobileMenu', handleToggle as EventListener);
-      window.removeEventListener('closeMobileMenu', handleClose);
+      window.removeEventListener("toggleMobileMenu", onToggle);
+      window.removeEventListener("closeMobileMenu", onClose);
     };
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  const closeMobile = () => {
     setIsMobileMenuOpen(false);
-    window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-  }, [pathname]);
-
-  const toggleSection = (sectionName: string) => {
-    setOpenSections((prev) =>
-      prev.includes(sectionName)
-        ? prev.filter((s) => s !== sectionName)
-        : [...prev, sectionName]
-    );
+    window.dispatchEvent(new CustomEvent("closeMobileMenu"));
   };
+
+  const toggle = (g: string) => setOverrides(prev => ({ ...prev, [g]: !isOpen(g) }));
 
   return (
     <>
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
-          onClick={() => {
-            setIsMobileMenuOpen(false);
-            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-          }}
-        />
+        <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden" onClick={closeMobile} />
       )}
 
-      {/* Sidebar */}
-      <aside className={cn(
-        "fixed left-0 top-16 w-64 sm:w-72 md:w-64 h-[calc(100vh-4rem)] border-r bg-background/95 backdrop-blur-sm z-40 transition-transform duration-300 ease-in-out shadow-lg md:shadow-none",
-        "md:translate-x-0",
-        isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-      )}>
+      <aside
+        className={cn(
+          "fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r bg-background/95 backdrop-blur-sm transition-transform duration-300 ease-in-out sm:w-72 md:w-64 md:translate-x-0 md:shadow-none",
+          isMobileMenuOpen ? "translate-x-0 shadow-lg" : "-translate-x-full md:translate-x-0",
+        )}
+      >
         <ScrollArea className="h-full">
-          <div className="p-4 sm:p-5">
-            {/* Mobile: Close Button */}
-            <div className="md:hidden flex items-center justify-between mb-3 pb-3 border-b">
-              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Menu
-              </h2>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-                }}
-                className="h-8 w-8"
-              >
+          <div className="p-4">
+            <div className="mb-3 flex items-center justify-between border-b pb-3 md:hidden">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Menu</h2>
+              <Button variant="ghost" size="icon" onClick={closeMobile} className="h-8 w-8">
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            {/* Guides Heading with Icons */}
-            <div className="px-3 py-2 mb-4 space-y-2">
-              <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Guides
-              </h2>
-              <div className="space-y-1">
-                <Link
-                  href="/docs"
-                  prefetch={true}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-                  }}
-                  className={cn(
-                    "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors",
-                    pathname === "/docs"
-                      ? "text-primary font-medium bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                  )}
-                >
-                  <FileText className="h-4 w-4" />
-                  Documentation
-                </Link>
-              </div>
-            </div>
-          
-          <nav className="space-y-1">
-            {navigation.map((section) => (
-              <div key={section.name}>
-                {hasChildren(section) ? (
-                  <>
+
+            <nav className="space-y-1 pb-8">
+              {tree.map(({ group, sections }) => {
+                const Icon = GROUP_ICON[group];
+                const expanded = isOpen(group);
+                return (
+                  <div key={group}>
                     <button
-                      onClick={() => toggleSection(section.name)}
-                      className={cn(
-                        "w-full text-left px-3 py-2.5 text-sm font-medium text-foreground/90 hover:text-foreground transition-colors flex items-center justify-between rounded-md hover:bg-muted/50 group mb-1",
-                        openSections.includes(section.name) && "text-foreground"
-                      )}
+                      onClick={() => toggle(group)}
+                      aria-expanded={expanded}
+                      className="group mb-0.5 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-[13.5px] font-semibold text-foreground/90 transition-colors hover:bg-muted/60 hover:text-foreground"
                     >
-                      <div className="flex items-center gap-2.5">
-                        {section.name === "Get Started" && <Rocket className="h-4 w-4 text-primary" />}
-                        {section.name === "Event Management" && <Calendar className="h-4 w-4 text-primary" />}
-                        
-                        {section.name === "API Reference" && <Code2 className="h-4 w-4 text-primary" />}
-                        <span>{section.name}</span>
-                      </div>
+                      <span className="flex items-center gap-2.5">
+                        {Icon && <Icon className="h-4 w-4 text-primary" />}
+                        {group}
+                      </span>
                       <ChevronRight
                         className={cn(
-                          "h-3.5 w-3.5 transition-transform text-muted-foreground group-hover:text-foreground flex-shrink-0",
-                          openSections.includes(section.name) && "rotate-90"
+                          "h-3.5 w-3.5 shrink-0 text-muted-foreground transition-transform",
+                          expanded && "rotate-90",
                         )}
                       />
                     </button>
-                    {openSections.includes(section.name) && (
-                      <div className="ml-1 mt-1 mb-2 space-y-1 pl-3 border-l border-border/50">
-                        {section.children.map((item) => {
-                          // Check if this item has nested children
-                          if (hasNestedChildren(item)) {
-                            const nestedItem = item;
-                            const isNestedOpen = nestedItem.children.some((child) => child.href === pathname);
-                            const nestedSectionKey = `${section.name}-${nestedItem.name}`;
-                            return (
-                              <div key={nestedItem.name}>
-                                <button
-                                  onClick={() => {
-                                    // Toggle nested section
-                                    setOpenSections((prev) =>
-                                      prev.includes(nestedSectionKey)
-                                        ? prev.filter((s) => s !== nestedSectionKey)
-                                        : [...prev, nestedSectionKey]
-                                    );
-                                  }}
-                                  className={cn(
-                                    "w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center justify-between mb-1",
-                                    isNestedOpen
-                                      ? "text-primary font-medium bg-primary/10"
-                                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                  )}
-                                >
-                                  <div className="flex items-center gap-2.5">
-                                    {nestedItem.name.includes("Configuration") && <Settings className="h-3.5 w-3.5" />}
-                                    <span>{nestedItem.name}</span>
-                                  </div>
-                                  <ChevronRight
-                                    className={cn(
-                                      "h-3 w-3 transition-transform text-muted-foreground flex-shrink-0",
-                                      openSections.includes(nestedSectionKey) && "rotate-90"
-                                    )}
-                                  />
-                                </button>
-                                {openSections.includes(nestedSectionKey) && (
-                                  <div className="ml-2 mt-1 mb-2 space-y-1 pl-3 border-l border-border/30">
-                                    {nestedItem.children.map((nestedChild) => {
-                                      const getNestedIcon = (name: string) => {
-                                        if (name.includes("Edit") || name.includes("Settings")) return <Settings className="h-3 w-3" />;
-                                        if (name.includes("Payment") || name.includes("Pricing")) return <Settings className="h-3 w-3" />;
-                                        if (name.includes("Form") || name.includes("Fields")) return <FileText className="h-3 w-3" />;
-                                        return null;
-                                      };
-                                      
-                                      return (
-                                        <Link
-                                          key={nestedChild.href}
-                                          href={nestedChild.href}
-                                          prefetch={true}
-                                          onClick={() => {
-                                            setIsMobileMenuOpen(false);
-                                            window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-                                          }}
-                                          className={cn(
-                                            "flex items-center gap-2.5 px-3 py-2 text-xs rounded-md transition-colors relative",
-                                            pathname === nestedChild.href
-                                              ? "text-primary font-medium bg-primary/10"
-                                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                          )}
-                                        >
-                                          {getNestedIcon(nestedChild.name)}
-                                          <span>{nestedChild.name}</span>
-                                        </Link>
-                                      );
-                                    })}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          }
-                          // Regular child item
-                          const getIcon = (name: string) => {
-                            if (name.includes("Overview") || name.includes("Introduction")) return <FileText className="h-3.5 w-3.5" />;
-                            if (name.includes("Installation") || name.includes("Quick Start")) return <Settings className="h-3.5 w-3.5" />;
-                            if (name.includes("Organizer Profile")) return <Users className="h-3.5 w-3.5" />;
-                            if (name.includes("Creating Events")) return <Calendar className="h-3.5 w-3.5" />;
-                            if (name.includes("Registration")) return <Users className="h-3.5 w-3.5" />;
-                            if (name.includes("QR") || name.includes("Scan")) return <QrCode className="h-3.5 w-3.5" />;
-                            if (name.includes("Analytics")) return <BarChart3 className="h-3.5 w-3.5" />;
-                            if (name.includes("Post Event") || name.includes("Archive")) return <Archive className="h-3.5 w-3.5" />;
-                            if (name.includes("Child Events") || name.includes("Sub")) return <Layers className="h-3.5 w-3.5" />;
-                            if (name.includes("Payment") || name.includes("Pricing")) return <Settings className="h-3.5 w-3.5" />;
-                            if (name.includes("Form") || name.includes("Fields")) return <FileText className="h-3.5 w-3.5" />;
-                            if (name.includes("In-Event") || name.includes("During")) return <Calendar className="h-3.5 w-3.5" />;
-                            if (name.includes("Notes")) return <BookOpen className="h-3.5 w-3.5" />;
-                            if (name.includes("API") || name.includes("SDK")) return <Code2 className="h-3.5 w-3.5" />;
-                            if (name.includes("Code") || name.includes("Markdown")) return <Code2 className="h-3.5 w-3.5" />;
-                            return null;
-                          };
-                          
-                          return (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              prefetch={true}
-                              onClick={() => {
-                                setIsMobileMenuOpen(false);
-                                window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-                              }}
-                              className={cn(
-                                "flex items-center gap-2.5 px-3 py-2 text-sm rounded-md transition-colors relative",
-                                pathname === item.href
-                                  ? "text-primary font-medium bg-primary/10"
-                                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                              )}
-                            >
-                              {getIcon(item.name)}
-                              <span>{item.name}</span>
-                            </Link>
-                          );
-                        })}
+
+                    {expanded && (
+                      <div className="mb-2 ml-[18px] space-y-2 border-l pl-3">
+                        {sections.map(({ name, pages }) => (
+                          <div key={name ?? "_"} className="space-y-0.5">
+                            {name && (
+                              <p className="px-3 pb-0.5 pt-1.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/70">
+                                {name}
+                              </p>
+                            )}
+                            {pages.map(p => (
+                              <NavLink key={p.href} page={p} active={pathname === p.href} onNavigate={closeMobile} />
+                            ))}
+                          </div>
+                        ))}
                       </div>
                     )}
-                  </>
-                ) : (
-                  <Link
-                    href={section.href}
-                    prefetch={true}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      window.dispatchEvent(new CustomEvent('closeMobileMenu'));
-                    }}
-                    className={cn(
-                      "block px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                      pathname === section.href
-                        ? "text-primary bg-primary/10"
-                        : "text-foreground/90 hover:text-foreground hover:bg-muted/50"
-                    )}
-                  >
-                    {section.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      </ScrollArea>
-    </aside>
+                  </div>
+                );
+              })}
+            </nav>
+          </div>
+        </ScrollArea>
+      </aside>
     </>
   );
 }
