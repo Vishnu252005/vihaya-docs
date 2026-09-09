@@ -146,7 +146,7 @@ export default function Header() {
           <Button 
             asChild 
             size="sm"
-            className="hidden sm:flex bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground hover:from-primary/90 hover:via-primary/80 hover:to-primary/90 shadow-md hover:shadow-lg transition-all duration-200 font-semibold px-3 lg:px-4"
+            className="hidden sm:flex bg-gradient-to-br from-[#0f766e] to-[#115e59] text-white hover:from-[#115e59] hover:to-[#134e4a] shadow-md hover:shadow-lg transition-all duration-200 font-semibold px-3 lg:px-4"
           >
             <Link href="https://vihaya.app/events" target="_blank" rel="noopener noreferrer">
               <span className="hidden lg:inline">Vihaya</span>

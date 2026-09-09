@@ -12,7 +12,7 @@ export const metadata: Metadata = genMeta({
 export default function AIEventCreationPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">
+      <div className="text-accent-ink text-sm font-medium mb-4">
         AI Assistant
       </div>
       

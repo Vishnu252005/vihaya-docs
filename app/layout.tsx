@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
-const inter = Inter({ 
+// ⚠️ THE SAME TWO FACES THE EVENTS SITE USES — DM Sans for body, Bricolage
+// Grotesque for display. This site was on Inter, which is most of why it read
+// as a different product even before the palette was fixed.
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  display: 'swap',
+  variable: "--font-sans",
+  display: "optional",
+  weight: ["400", "500", "600", "700"],
   preload: true,
-  variable: '--font-inter',
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "optional",
+  weight: ["600", "700", "800"],
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -90,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html lang="en" suppressHydrationWarning className={`${dmSans.variable} ${bricolage.variable}`}>
       <head>
         <meta name="google-site-verification" content="OarQUWPSYaByQoOu9qNN9KKugeYywIN1o9dtc_BADGY" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -99,7 +111,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <StructuredData />
       </head>
-      <body className={inter.className}>
+      <body className={dmSans.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

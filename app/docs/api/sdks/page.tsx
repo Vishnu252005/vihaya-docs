@@ -13,7 +13,7 @@ export const metadata: Metadata = genMeta({
 export default function SdksPage() {
   return (
     <div className="max-w-none space-y-8">
-      <div className="text-primary text-sm font-medium mb-4">API Reference</div>
+      <div className="text-accent-ink text-sm font-medium mb-4">API Reference</div>
       <h1 className="text-4xl font-bold mb-4 leading-tight tracking-tight">
         Official SDKs — {SDKS.length} languages
       </h1>
@@ -27,7 +27,7 @@ export default function SdksPage() {
             does not exist is the exact failure this section prevents. */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-primary/25 bg-primary/[0.06] p-4">
-            <p className="mb-2.5 font-mono text-[10px] uppercase tracking-widest text-primary">Wrapped by the SDKs</p>
+            <p className="mb-2.5 font-mono text-[10px] uppercase tracking-widest text-accent-ink">Wrapped by the SDKs</p>
             <ul className="space-y-1.5">
               {SDK_COVERAGE.covered.map(c => (
                 <li key={c.call} className="text-[13px]">
@@ -51,7 +51,7 @@ export default function SdksPage() {
               {sdk.lang}
             </h2>
             <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border bg-card px-4 py-3">
-              <code className="font-mono text-[13px] text-primary">{sdk.install}</code>
+              <code className="font-mono text-[13px] text-accent-ink">{sdk.install}</code>
               <span className="rounded-full bg-muted px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
                 v{sdk.version.replace(/^v/, "")}
               </span>

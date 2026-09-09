@@ -4,48 +4,60 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* ⚠️ THESE ARE THE EVENTS SITE'S TOKENS, COPIED VERBATIM FROM
+     * vihaya-eventss/src/app/globals.css — not re-derived. This site shipped
+     * on the stock shadcn palette (blue --primary, pure-white ground, cold
+     * neutral greys), which is the single reason it did not look like the rest
+     * of Vihaya. Changing --primary alone re-skins every text-primary,
+     * bg-primary and border-primary in the app.
+     *
+     * --background is EXACTLY #f7f5f0. A pure-white ground is 97% as bright as
+     * white, which glares, and leaves a white card at 1.03:1 against it — so
+     * nothing on the page has any depth. Do not "simplify" it back to 0 0% 100%.
+     */
+    --background: 43 30% 95.5%;
+    --foreground: 220 12% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 240 10% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --popover-foreground: 240 10% 4%;
+    /* Brand teal. Was 221.2 83.2% 53.3% — shadcn's default blue. */
+    --primary: 168 85% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 16% 96%;
+    --secondary-foreground: 220 9% 10%;
+    --muted: 220 16% 96%;
+    --muted-foreground: 220 10% 32%;
+    --accent: 220 16% 96%;
+    --accent-foreground: 220 9% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 91%;
+    --input: 220 14% 87%;
+    --ring: 168 85% 36%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 240 6% 4%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 240 6% 6%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 240 6% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 217.2 91.2% 59.8%;
+    --primary: 168 85% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 4% 20%;
+    --input: 240 4% 20%;
+    --ring: 168 85% 36%;
   }
 }
 
@@ -99,4 +111,35 @@
 
 .dark ::-webkit-scrollbar-thumb:hover {
   @apply bg-muted-foreground/60;
+}
+
+@layer utilities {
+  /* ⚠️ SMALL ACCENT TEXT NEEDS THE 700 STEP ON THE CREAM GROUND.
+   * --primary (#0d9488) measures ~3.4:1 against #f7f5f0, which is under the
+   * 4.5 floor for anything below 18.66px — the events site hit this and had to
+   * move every sub-18px instance to #0f766e (5.02:1). Use this for eyebrows,
+   * micro-labels and any small accent text; plain `text-primary` is still
+   * correct for large text, icons and filled surfaces. */
+  /* ⚠️ ACCENT *TEXT* USES THE 700 STEP; FILLS KEEP THE BRAND TEAL.
+   * --primary is #0d9488, which measures ~2.5-3.4:1 against the #f7f5f0 ground
+   * depending on size — under the 4.5 floor for anything below 18.66px, and a
+   * docs site is almost entirely small text. Overriding the TEXT utility only
+   * leaves bg-primary / border-primary / ring-primary on the real brand colour,
+   * so buttons and surfaces are untouched. The events site reached the same
+   * conclusion the long way round (#0d9488 -> #0f766e on every sub-18px site).
+   * Must stay AFTER Tailwind's own utilities to win on source order. */
+  .text-primary { color: #0f766e; }
+  .dark .text-primary { color: #2dd4bf; }
+  .text-accent-ink { color: #0f766e; }
+  .dark .text-accent-ink { color: #2dd4bf; }
+
+  /* Display face for headings — matches the events site. */
+  .font-display {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+
+  /* Same 2.5%-opacity grain the events site lays over its section grounds. */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E");
+  }
 }
