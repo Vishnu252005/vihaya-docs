@@ -26,8 +26,12 @@ export default function TableOfContents() {
     let rafId: number | null = null;
 
     const updateHeadings = () => {
-      const headingElements = document.querySelectorAll("h2");
-      
+      // ⚠️ SCOPED TO THE ARTICLE, NOT THE DOCUMENT. A bare `document` query also
+      // matched the sidebar's mobile "Menu" heading, which then appeared as the
+      // first entry of "On this page" on every page and scrolled nowhere.
+      const root = document.querySelector("[data-docs-content]") ?? document;
+      const headingElements = root.querySelectorAll("h2");
+
       if (headingElements.length === 0) {
         // Try again after a short delay if no headings found
         rafId = requestAnimationFrame(() => {

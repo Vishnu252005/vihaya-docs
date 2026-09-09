@@ -25,7 +25,7 @@ export function MethodChip({ method }: { method: string }) {
 
 export function Code({ children, filename }: { children: string; filename?: string }) {
     return (
-        <div className="my-4 overflow-hidden rounded-xl border bg-[#0b0f14]">
+        <div className="not-prose my-4 overflow-hidden rounded-xl border bg-[#0b0f14]">
             {filename && (
                 <div className="flex items-center gap-2 border-b border-white/10 px-3.5 py-2">
                     <span className="h-2 w-2 rounded-full bg-emerald-400/60" />
