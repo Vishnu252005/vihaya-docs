@@ -44,9 +44,13 @@ export default function ApiIndexPage() {
         <div>
           <h2 id="your-first-call" className="text-2xl font-semibold mb-4">Your first call</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Create a key at <strong>Developer → API keys</strong> in your Vihaya dashboard. It is
-            shown once and stored hashed. Send it as <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px]">x-api-key</code> on
-            every request, then call <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px]">/me</code> to
+            Create a key at <strong>Developer → API keys</strong> in your Vihaya dashboard. If you
+            are building a checkout into your own product, choose{" "}
+            <strong>Checkout only</strong> — it can sell tickets but cannot read attendee details.
+            The key is shown once and stored hashed. Send it as{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px]">x-api-key</code> on
+            every request, then call{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px]">/me</code> to
             confirm which account it belongs to.
           </p>
           <Code filename="first-call.sh">{`curl ${API_BASE}/api/v1/me \\
