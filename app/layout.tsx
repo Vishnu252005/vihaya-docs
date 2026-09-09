@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description: "Documentation for Vihaya Events — the event ticketing platform. Create events, manage registrations and check-in, and build on the REST API with official SDKs for seven languages.",
     images: [
       {
-        url: "/images/logo_only.png",
+        url: "/images/logos/logo_only.png",
         width: 1200,
         height: 630,
         alt: "Vihaya Documentation",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vihaya Events Documentation",
     description: "Documentation for Vihaya Events — the event ticketing platform. Create events, manage registrations and check-in, and build on the REST API with official SDKs for seven languages.",
-    images: ["/images/logo_only.png"],
+    images: ["/images/logos/logo_only.png"],
     creator: "@vihaya",
   },
   robots: {
@@ -74,10 +74,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/logo_only.png", type: "image/png" },
+      { url: "/images/logos/logo_only.png", type: "image/png" },
     ],
-    shortcut: "/images/logo_only.png",
-    apple: "/images/logo_only.png",
+    shortcut: "/images/logos/logo_only.png",
+    apple: "/images/logos/logo_only.png",
   },
   verification: {
     google: "OarQUWPSYaByQoOu9qNN9KKugeYywIN1o9dtc_BADGY",
