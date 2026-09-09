@@ -30,12 +30,12 @@ export default function EventAnalyticsPage() {
           </div>
           
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/event-analytics-dashboard.png"
                 alt="Event analytics dashboard showing summary cards for Total Events, Registrations, Revenue, and registration trends graph with peak registration hours"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -135,22 +135,22 @@ export default function EventAnalyticsPage() {
           </div>
           
           <div className="my-6 grid gap-6 md:grid-cols-2">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/analytics-by-college-year.png"
                 alt="Analytics charts showing registrations by college (bar chart) and registrations by year (donut chart)"
-                width={1080}
-                height={1920}
+                width={1088}
+                height={407}
                 className="w-full h-auto"
                 priority
               />
             </div>
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/analytics-by-year-department.png"
                 alt="Analytics charts showing registrations by year (donut chart) and registrations by department (bar chart)"
-                width={1080}
-                height={1920}
+                width={1088}
+                height={260}
                 className="w-full h-auto"
                 priority
               />

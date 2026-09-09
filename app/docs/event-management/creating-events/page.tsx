@@ -48,12 +48,12 @@ export default function CreatingEventsPage() {
           </div>
           
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/select-event-type.png"
                 alt="Select Event Type screen showing Single Event and Mega Event options"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -90,12 +90,12 @@ export default function CreatingEventsPage() {
           </div>
           
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/basic-information-form.png"
                 alt="Basic information form showing event banner, name, location, description, and status fields"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -128,12 +128,12 @@ export default function CreatingEventsPage() {
           </div>
 
           <div className="my-6 flex justify-center">
-            <div className="rounded-lg border overflow-hidden shadow-lg max-w-md">
+            <div className="rounded-lg border overflow-hidden shadow-lg">
               <Image
                 src="/images/events/date-time-form.png"
                 alt="Date and time form showing start date, end date, and registration launch schedule with countdown"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -196,22 +196,22 @@ export default function CreatingEventsPage() {
           </div>
           
           <div className="my-6 grid gap-6 md:grid-cols-2">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/pricing-capacity-form.png"
                 alt="Pricing and capacity form showing free event toggle, price, capacity, and points fields"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
             </div>
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/special-pricing-form.png"
                 alt="Special pricing form showing capacity, points, and special price groups configuration"
-                width={1080}
-                height={1920}
+                width={1096}
+                height={1234}
                 className="w-full h-auto"
                 priority
               />
@@ -225,12 +225,12 @@ export default function CreatingEventsPage() {
             Configure team registration settings for competitions, hackathons, and collaborative events:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/teams-collaboration-form.png"
                 alt="Teams & Collaboration form showing team event toggle, minimum and maximum team size configuration"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -278,22 +278,22 @@ export default function CreatingEventsPage() {
             </div>
           </div>
           <div className="my-6 grid gap-6 md:grid-cols-2">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/addons-form.png"
                 alt="Add-ons form showing accommodation and food coupons configuration with toggles and price fields"
-                width={1080}
-                height={1920}
+                width={1096}
+                height={309}
                 className="w-full h-auto"
                 priority
               />
             </div>
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/engagement-contacts-form.png"
                 alt="Engagement and Session Contacts form showing referral system toggle, WhatsApp group toggle, and contact phone fields"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -321,12 +321,12 @@ export default function CreatingEventsPage() {
             </div>
           </div>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/contact-information-form.png"
                 alt="Contact Information form showing session contacts and contact information fields with phone, email, contact person name, and event website"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -340,12 +340,12 @@ export default function CreatingEventsPage() {
             Optionally add detailed information about your event's agenda, speakers, and sponsors:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/event-details-form.png"
                 alt="Event Details form showing toggle switch, agenda, speakers, and sponsors fields"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -377,12 +377,12 @@ export default function CreatingEventsPage() {
             Enable submission options for academic or research events:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/submission-options-form.png"
                 alt="Submission Options form showing abstract, paper, and poster submission toggles"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -410,12 +410,12 @@ export default function CreatingEventsPage() {
             Provide travel and parking information for in-person and hybrid events:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/travel-parking-form.png"
                 alt="Travel & Parking form showing toggle switch, travel information, and parking information fields"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -443,12 +443,12 @@ export default function CreatingEventsPage() {
             Collect additional information from attendees during registration:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/additional-registration-fields-form.png"
                 alt="Additional Registration Fields form showing toggles for dietary preferences, accessibility needs, emergency contact, affiliation, research interests, and T-shirt size"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
@@ -488,12 +488,12 @@ export default function CreatingEventsPage() {
             Add custom fields to collect additional information specific to your event:
           </p>
           <div className="my-6">
-            <div className="max-w-md mx-auto rounded-lg shadow-lg border overflow-hidden">
+            <div className="rounded-lg shadow-lg border overflow-hidden">
               <Image
                 src="/images/events/custom-fields-form.png"
                 alt="Custom Fields form showing existing custom fields and add custom field button"
-                width={1080}
-                height={1920}
+                width={1440}
+                height={900}
                 className="w-full h-auto"
                 priority
               />
