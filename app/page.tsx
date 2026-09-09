@@ -36,7 +36,7 @@ export default function Home() {
               size="sm"
               className="bg-gradient-to-br from-[#0f766e] to-[#115e59] text-white hover:from-[#115e59] hover:to-[#134e4a] shadow-md hover:shadow-lg transition-all duration-200 font-semibold px-4"
             >
-              <Link href="https://vihaya.app/events" target="_blank" rel="noopener noreferrer">
+              <Link href="https://events.vihaya.app" target="_blank" rel="noopener noreferrer">
                 Vihaya
               </Link>
             </Button>
