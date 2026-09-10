@@ -89,9 +89,45 @@ export const AGENT_RULES: { title: string; body: string }[] = [
             'GET /api/v1/events/{id} carries capacity and current counts. Registration can still lose a race and come back ' +
             '4xx if the last seat went while the user was typing, so surface that error rather than assuming success.',
     },
+    {
+        title: 'The QR code contains the bare registration id — nothing else',
+        body:
+            'No URL, no JSON, no signature. The ticket QR encodes the registration id as a plain string, e.g. ' +
+            '"pNd1m0TRqN8Hx5a1QopI". You therefore do NOT need anything from Vihaya to draw a ticket: encode ' +
+            'registrationId with any QR library and it scans in the Vihaya check-in app identically to one we sent. ' +
+            'There is NO endpoint that returns a QR image — do not go looking for one, and do not tell a user to wait ' +
+            'for one. Get the id from `registrationId` on the register call or the registration.confirmed webhook, or ' +
+            '`id` on each row of GET /events/{id}/registrations. Team bookings issue one ticket per member, each with ' +
+            'its own id; the webhook carries only the primary.',
+    },
+    {
+        title: 'Webhooks: one event type, configured in the dashboard, never retried',
+        body:
+            'There is NO /v1/webhooks route — the URL and signing secret are set at /profile/integrations, per organiser ' +
+            'account. Exactly ONE event type exists: registration.confirmed. Names like event.created, ' +
+            'payment.succeeded, registration.checked_in or booking.confirmed appear in older documentation and DO NOT ' +
+            'FIRE. Payloads are signed HMAC-SHA256 (not SHA512) over `${timestamp}.${rawBody}`, with the signature in ' +
+            'X-Vihaya-Signature prefixed "sha256=" — strip the prefix before a timing-safe compare, or the buffers are ' +
+            'different lengths and it throws. Delivery is best-effort: 5s timeout, no retries, response body never read. ' +
+            'A dropped delivery is gone, so reconcile against GET /events/{id}/registrations rather than treating it ' +
+            'as a queue.',
+    },
+    {
+        title: 'Ticket emails cannot be templated, but the organiser can send their own',
+        body:
+            'Vihaya\'s ticket email has fixed branding — there is no template uploader, no per-organiser logo or colour, ' +
+            'and the sender is always no-reply@events.vihaya.app. Do not promise anyone a custom template. What they ' +
+            'CAN do is send their own: the registration.confirmed webhook carries the attendee and the registrationId, ' +
+            'and that id is the QR payload, so the whole ticket can be issued from their own system on their own ' +
+            'domain. The one step they cannot self-serve is switching OUR email off — sendTicketEmails is fixed in ' +
+            'Firestore rules so an organiser cannot silence their own attendees\' tickets, and support has to flip it. ' +
+            'The API accepts sendTicketEmails on event creation but does not write it. Until support acts, the attendee ' +
+            'receives BOTH emails. Switching it off does not reduce the platform fee — the delivery slice of the rate ' +
+            'is currently 0%.',
+    },
 ];
 
-/** The call order for the two things people actually build. */
+/** The call order for the things people actually build. */
 export const AGENT_RECIPES: { title: string; steps: string[] }[] = [
     {
         title: 'Sell tickets from your own site (headless storefront)',
@@ -113,6 +149,18 @@ export const AGENT_RECIPES: { title: string; steps: string[] }[] = [
             'GET /api/v1/events/{id}/registrations — who has booked (needs a full-access key).',
             'GET /api/v1/events/{id}/analytics — totals, revenue and turnout.',
             'POST /api/v1/events/{id}/broadcast — email the attendees. You cannot name recipients; you narrow by track or audience.',
+        ],
+    },
+    {
+        title: 'Send your own ticket email, with your own template and branding',
+        steps: [
+            'Set a webhook URL + signing secret at /profile/integrations (dashboard only — there is no /v1/webhooks route).',
+            'Verify every delivery: HMAC-SHA256 over `${timestamp}.${rawBody}`, strip the "sha256=" prefix, timing-safe compare, reject a timestamp older than ~5 minutes.',
+            'On registration.confirmed, read data.name, data.email, data.eventTitle, data.ticketType and data.quantity — a standard ticket needs no follow-up call.',
+            'Render the QR yourself from data.registrationId with any QR library. Same payload as ours, so it scans at the gate.',
+            'Send from your own ESP, with your own template and branding. This step does not touch Vihaya.',
+            'Ask Vihaya support to set sendTicketEmails=false on the event. You cannot do this yourself, and until it is done the attendee gets two emails.',
+            'Backfill anything you missed with GET /api/v1/events/{id}/registrations — webhooks are never retried.',
         ],
     },
 ];

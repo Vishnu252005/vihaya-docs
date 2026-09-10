@@ -129,6 +129,10 @@ export const DOC_PAGES: DocPage[] = [
         href: '/docs/api/webhooks', title: 'Webhooks', group: 'API Reference', icon: Webhook,
         summary: 'Signed callbacks when a registration confirms, and verifying the HMAC.',
     },
+    {
+        href: '/docs/api/tickets', title: 'Tickets & QR', group: 'API Reference', icon: QrCode,
+        summary: 'What the QR actually contains, and how to send ticket emails from your own domain.',
+    },
 ];
 
 /** Nav order. A group absent here would not render, so keep it complete. */
